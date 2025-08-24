@@ -20,7 +20,7 @@
   --color-bg: #ffffff;
   --grad1: #0b7b9e;
   --grad2: #3c6e71;
-  --color-accent: #e74c3c;
+  --color-accent: #bce73c;
   --font-family: 'NowAlt', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --line-height: 1.6;
   --spacing-xs: 0.5rem;
@@ -200,10 +200,45 @@ font-family: var(--font-family);
 .number-list {
   display: flex;
   gap: var(--spacing-xs);
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   margin-top: var(--spacing-sm);
   justify-content: center;
+  width: auto;
+}
+
+/* Prev/Next controls around number list */
+.number-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: space-between;
   width: 100%;
+}
+
+.number-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-accent);
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.95rem;
+  white-space: nowrap; /* keep icon and label on one line */
+}
+
+.number-button .icon {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.number-button:hover {
+  color: var(--color-accent);
+}
+
+/* ensure the number list stays centered between control buttons */
+.number-controls > .number-list {
+  margin: 0 auto;
 }
 
 .number-item {
@@ -434,7 +469,8 @@ font-family: var(--font-family);
 /* Place cards */
 .place-card {
   padding: var(--spacing-md) 0;
-  border-bottom: 1px solid #f0f0f0;
+  /* no bottom border for place cards */
+  border-bottom: none;
 }
 
 .place-card:last-child {

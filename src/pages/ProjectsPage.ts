@@ -68,7 +68,17 @@ export function createProjectsPage(): HTMLElement {
     content.appendChild(projectCard);
   });
   
-  appendChildren(page, header, content, numberList);
+  // wrap number list with controls
+  const controls = createElement('div', 'number-controls');
+  const prevBtn = createElement('div', 'number-button prev');
+  // arrow with dash after the arrow
+  prevBtn.innerHTML = `<span class="icon">◀</span><span>prev</span>`;
+  const nextBtn = createElement('div', 'number-button next');
+  // dash before the arrow
+  nextBtn.innerHTML = `<span>next</span><span class="icon">▶</span>`;
+  appendChildren(controls, prevBtn, numberList, nextBtn);
+
+  appendChildren(page, header, content, controls);
   
   // Hook up number filtering: clicking a number shows only the corresponding project
   const numberItems = page.querySelectorAll('.number-item');
@@ -106,6 +116,19 @@ export function createProjectsPage(): HTMLElement {
 
     // initialize with index 1 active
     applyFilter(1);
+
+    // arrow navigation logic
+    const clamp = (v: number) => Math.max(1, Math.min(numbers.length, v));
+    prevBtn.addEventListener('click', () => {
+      const active = page.querySelector('.number-item.active');
+      const cur = active ? parseInt(active.textContent || '1', 10) : 1;
+      applyFilter(clamp(cur - 1));
+    });
+    nextBtn.addEventListener('click', () => {
+      const active = page.querySelector('.number-item.active');
+      const cur = active ? parseInt(active.textContent || '1', 10) : 1;
+      applyFilter(clamp(cur + 1));
+    });
   }
 
   return page;
