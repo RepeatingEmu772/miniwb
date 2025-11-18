@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: "/miniwb/",
+  base: "/",
   build: {
     target: 'es2020'
   },
