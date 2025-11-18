@@ -23,8 +23,8 @@ const personalInfo = {
 // Navigation items
 const navigationItems: NavigationItem[] = [
   { id: 'home', label: personalInfo.name }, // This will be the home link
+  { id: 'education', label: 'education & experience', href: '#education' },
   { id: 'projects', label: 'projects', href: '#projects' },
-  { id: 'education', label: 'education', href: '#education' },
   { id: 'skills', label: 'skills', href: '#skills' },
   { id: 'youtube', label: 'youtube', href: '#youtube' },
   { id: 'places', label: 'places', href: '#places' },

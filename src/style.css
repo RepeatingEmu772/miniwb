@@ -24,9 +24,9 @@
   --font-family: 'NowAlt', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --line-height: 1.6;
   --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
+  --spacing-sm: 0.5rem;
   --spacing-md: 2rem;
-  --spacing-lg: 3rem;
+  --spacing-lg: 1rem;
   --spacing-xl: 4rem;
   --max-width: 1200px;
 }
@@ -265,34 +265,48 @@ font-family: var(--font-family);
 @media (max-width: 768px) {
   #app {
     grid-template-columns: 1fr;
-    padding: var(--spacing-sm);
+    padding: var(--spacing-xs) var(--spacing-sm);
     gap: var(--spacing-md);
   }
 
   .navigation {
     position: static;
     width: auto;
+    height: auto;              /* reset the big desktop height */
+    top: auto;                 /* no offset needed when static */
+    left: auto;
     padding-left: 0;
+    margin-bottom: 0.4rem;     /* smaller gap below nav */
   }
 
   .nav-list {
     flex-direction: row;
     flex-wrap: wrap;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-xs);    /* compact nav spacing */
+    justify-content: center;
   }
 
   .main-content {
     margin-left: 0;
+    margin-top: 0;             /* remove extra offset above content */
   }
 
-  /* Mobile-specific nav sizing */
-  .nav-item,
-  .nav-link {
-    font-size: 14px;
+  .page-header {
+    padding-top: 0.25rem;      /* very tight top padding */
+    padding-bottom: 0.1rem;    /* modest bottom padding */
   }
 
-  .hero-title {
-    font-size: 2.5rem;
+  .page-title {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .page-content {
+    gap: var(--spacing-sm);
+  }
+
+  .architecture-block {
+    width: 100%;
   }
 }
 
@@ -306,6 +320,11 @@ font-family: var(--font-family);
 
 .page-header {
   padding: var(--spacing-md) 0;
+}
+
+/* Projects page: slightly tighter header-to-first-project spacing */
+.projects-page .page-header {
+  padding-bottom: var(--spacing-sm);
 }
 
 .page-title {
@@ -337,6 +356,114 @@ font-family: var(--font-family);
   border-bottom: none;
 }
 
+/* Tighter spacing between Projects header and first project */
+.page-content .project-card:first-child {
+  padding-top: var(--spacing-sm);
+}
+
+/* Annotation block for the first project screenshot */
+.annotation-block {
+  margin-top: var(--spacing-sm);
+}
+
+.annotation-title {
+  font-size: 0.95rem;
+  font-weight: 400;
+  margin-bottom: 0.15rem;
+  color: var(--color-text);
+}
+
+.annotation-subtitle {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+}
+
+.annotation-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--spacing-lg);
+  row-gap: var(--spacing-md);
+  align-items: flex-start;
+  max-width: 900px;
+  margin: 2rem 0 0;              /* left-align within the project card */
+}
+
+.annotation-image {
+  display: block;
+  width: 280px;
+  height: auto; /* intrinsic height from 280x760 will be preserved */
+  border-radius: 24px;
+  /* box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55); */
+}
+
+.annotation-label {
+  max-width: 200px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  padding: 2rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: rgba(0, 0, 0, 0.45);
+  color: #ffffff;
+  backdrop-filter: blur(6px);
+}
+
+.annotation-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.architecture-block {
+  margin-top: var(--spacing-lg);
+  max-width: 900px;
+}
+
+.architecture-title {
+  font-size: 0.95rem;
+  font-weight: 400;
+  margin-bottom: 0.15rem;
+  color: var(--color-text);
+}
+
+.architecture-subtitle {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-sm);
+}
+
+.architecture-image-wrapper {
+  border-radius: 24px;
+  overflow: hidden;
+  /* subtle shadow similar to a card */
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+.architecture-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* On smaller screens, stack annotation items vertically */
+@media (max-width: 768px) {
+  .annotation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .annotation-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .annotation-label {
+    margin-top: 0.25rem;
+  }
+}
 
 
 .project-title {
@@ -356,6 +483,7 @@ font-family: var(--font-family);
   display: flex;
   gap: var(--spacing-xs);
   flex-wrap: wrap;
+  margin-bottom: 1.5rem;
 }
 
 .tech-tag {

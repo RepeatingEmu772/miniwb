@@ -7,7 +7,7 @@ export function createProjectsPage(): HTMLElement {
   const title = createElement('h1', 'page-title', 'Projects');
   const subtitle = createElement('p', 'page-subtitle', 'A selection of work spanning web development, mobile apps, and creative coding');
   
-  appendChildren(header, title, subtitle);
+  appendChildren(header, title);
   
   // Add number list under header (moved from home page)
   const numberList = createElement('div', 'number-list');
@@ -23,9 +23,9 @@ export function createProjectsPage(): HTMLElement {
   // Project items - you can expand these
   const projects = [
     {
-      title: 'Personal Website',
+      title: 'Reimagined LLM Application for mobile',
       description: 'A minimal TypeScript-based personal site with routing and clean design.',
-      tech: ['TypeScript', 'Vite', 'CSS Grid']
+      tech: ['Interactive Design', 'HAI', 'SwiftUI' , 'PGVector', 'LangChain']
     },
     {
       title: 'Task Management App',
@@ -56,15 +56,189 @@ export function createProjectsPage(): HTMLElement {
     projectCard.setAttribute('data-index', String(idx + 1));
     
     const projectTitle = createElement('h3', 'project-title', project.title);
-    const projectDesc = createElement('p', 'project-description', project.description);
-    
     const techList = createElement('div', 'tech-list');
     project.tech.forEach(tech => {
       const techTag = createElement('span', 'tech-tag', tech);
       techList.appendChild(techTag);
     });
-    
-    appendChildren(projectCard, projectTitle, projectDesc, techList);
+
+    const projectDesc = createElement('p', 'project-description', project.description);
+
+    appendChildren(projectCard, techList, projectTitle, projectDesc);
+
+    if (idx === 0) {
+      const annotationBlock = createElement('div', 'annotation-block');
+
+      const annotationTitle = createElement(
+        'h4',
+        'annotation-title',
+        'Image annotations'
+      );
+      const annotationSubtitle = createElement(
+        'p',
+        'annotation-subtitle',
+        'Callouts to highlight key parts of this project screenshot.'
+      );
+
+      const annotationContainer = createElement('div', 'annotation-container');
+
+      // First annotated image
+      const firstItem = createElement('div', 'annotation-item');
+      const baseImage = createElement('img', 'annotation-image') as HTMLImageElement;
+      baseImage.src = '/image/assistant-home.png';
+      baseImage.alt = 'Project screenshot with annotations';
+      baseImage.width = 360;
+      baseImage.height = 760;
+
+      const firstLabelGroup = createElement('div', 'annotation-label-group');
+
+      const firstLabelPrimary = createElement(
+        'div',
+        'annotation-label',
+        'Customizable widgets for frequently asked questions'
+      );
+      const firstLabelSecondary = createElement(
+        'div',
+        'annotation-label',
+        'Easily accessible suggestions to get started quickly'
+      );
+
+      appendChildren(firstLabelGroup, firstLabelPrimary, firstLabelSecondary);
+      appendChildren(firstItem, baseImage, firstLabelGroup);
+
+      // Second annotated image to the right
+      const secondItem = createElement('div', 'annotation-item');
+      const secondImage = createElement('img', 'annotation-image') as HTMLImageElement;
+      // TODO: update this path to your second screenshot
+      secondImage.src = '/image/assistant-context.png';
+      secondImage.alt = 'Context view screenshot';
+      secondImage.width = 360;
+      secondImage.height = 760;
+
+      const secondLabel = createElement(
+        'div',
+        'annotation-label',
+        'Allow users to view the context of past conversations and delete any if need be'
+      );
+
+      appendChildren(secondItem, secondImage, secondLabel);
+
+      const thirdItem = createElement('div', 'annotation-item');
+      const thirdImage = createElement('img', 'annotation-image') as HTMLImageElement;
+      thirdImage.src = '/image/assistant-agenda.png';
+      thirdImage.alt = 'Agenda view screenshot';
+      thirdImage.width = 360;
+      thirdImage.height = 760;
+
+      const thirdLabel = createElement(
+        'div',
+        'annotation-label',
+        'Panels created at runtime to help users focus on specific tasks'
+      );
+
+      appendChildren(thirdItem, thirdImage, thirdLabel);
+
+      const fourthItem = createElement('div', 'annotation-item');
+      const fourthImage = createElement('img', 'annotation-image') as HTMLImageElement;
+      fourthImage.src = '/image/assistant-news.png';
+      fourthImage.alt = 'Settings view screenshot';
+      fourthImage.width = 360;
+      fourthImage.height = 760;
+
+      const fourthLabel = createElement(
+        'div',
+        'annotation-label',
+        'Multiple types of content cards to suit different information needs'
+      );
+
+      appendChildren(fourthItem, fourthImage, fourthLabel);
+
+      // Fifth annotated image (below the first & third column)
+      const fifthItem = createElement('div', 'annotation-item');
+      const fifthImage = createElement('img', 'annotation-image') as HTMLImageElement;
+      // TODO: update this path to your fifth screenshot
+      fifthImage.src = '/image/assistant-share.png';
+      fifthImage.alt = 'Additional view screenshot';
+      fifthImage.width = 360;
+      fifthImage.height = 760;
+
+      const fifthLabel = createElement(
+        'div',
+        'annotation-label',
+        'Allow users to share content seamlessly across platforms'
+      );
+
+      appendChildren(fifthItem, fifthImage, fifthLabel);
+
+      // Fifth annotated image (below the first & third column)
+      const sixthItem = createElement('div', 'annotation-item');
+      const sixthImage = createElement('img', 'annotation-image') as HTMLImageElement;
+      // TODO: update this path to your sixth screenshot
+      sixthImage.src = '/image/assistant-summary.png';
+      sixthImage.alt = 'Additional view screenshot';
+      sixthImage.width = 360;
+      sixthImage.height = 760;
+
+      const sixthLabel = createElement(
+        'div',
+        'annotation-label',
+        'Summarize key points from the conversation for easy reference'
+      );
+
+      appendChildren(sixthItem, sixthImage, sixthLabel);
+
+      appendChildren(
+        annotationContainer,
+        firstItem,
+        secondItem,
+        thirdItem,
+        sixthItem,
+        fifthItem,
+        fourthItem
+      );
+      appendChildren(
+        annotationBlock,
+        annotationTitle,
+        annotationSubtitle,
+        annotationContainer
+      );
+      projectCard.appendChild(annotationBlock);
+
+      const architectureBlock = createElement('div', 'architecture-block');
+
+      const architectureTitle = createElement(
+        'h4',
+        'architecture-title',
+        'System architecture'
+      );
+      const architectureSubtitle = createElement(
+        'p',
+        'architecture-subtitle',
+        'High-level diagram showing how the iOS app, smart router, PGVector, and model providers work together.'
+      );
+
+      const architectureImageWrapper = createElement(
+        'div',
+        'architecture-image-wrapper'
+      );
+      const architectureImage = createElement(
+        'img',
+        'architecture-image'
+      ) as HTMLImageElement;
+      architectureImage.src = '/image/assistant-architecture-3.png';
+      architectureImage.alt =
+        'System architecture diagram for the personal AI assistant';
+      architectureImageWrapper.appendChild(architectureImage);
+
+      appendChildren(
+        architectureBlock,
+        architectureTitle,
+        architectureSubtitle,
+        architectureImageWrapper
+      );
+      projectCard.appendChild(architectureBlock);
+    }
+
     content.appendChild(projectCard);
   });
   

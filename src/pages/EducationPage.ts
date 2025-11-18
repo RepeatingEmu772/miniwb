@@ -5,7 +5,7 @@ export function createEducationPage(): HTMLElement {
   
   const header = createElement('section', 'page-header');
   const title = createElement('h1', 'page-title', 'Education');
-  const subtitle = createElement('p', 'page-subtitle', 'Academic journey and continuous learning');
+  const subtitle = createElement('p', 'page-subtitle', 'Academic journey and professional experiences');
   
   appendChildren(header, title, subtitle);
   
@@ -14,18 +14,18 @@ export function createEducationPage(): HTMLElement {
   // Education items
   const education = [
     {
-      institution: 'University Name',
+      institution: 'University of Minnesota, Twin Cities',
       degree: 'Bachelor of Engineering',
       field: 'Computer Science',
-      period: '2021 - 2025',
+      period: '2020 - 2024',
       description: 'Focused on software engineering, algorithms, and system design.'
     },
     {
-      institution: 'Online Learning',
-      degree: 'Self-Directed Study',
-      field: 'Web Technologies',
-      period: '2020 - Present',
-      description: 'Continuous learning in modern web frameworks, TypeScript, and full-stack development.'
+      institution: 'Coursera',
+      degree: 'Interaction Design Specialization - UC San Diego',
+      field: 'HCI',
+      period: '2025',
+      description: 'Human-centered design training focused on prototyping, usability, and intuitive digital experiences.'
     }
   ];
   
