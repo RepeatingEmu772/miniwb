@@ -5,7 +5,7 @@ export function createProjectsPage(): HTMLElement {
   
   const header = createElement('section', 'page-header');
   const title = createElement('h1', 'page-title', 'Projects');
-  const subtitle = createElement('p', 'page-subtitle', 'A selection of work spanning web development, mobile apps, and creative coding');
+  // const subtitle = createElement('p', 'page-subtitle', 'A selection of work spanning web development, mobile apps, and creative coding');
   
   appendChildren(header, title);
   
