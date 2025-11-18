@@ -363,13 +363,13 @@ font-family: var(--font-family);
 
 /* Annotation block for the first project screenshot */
 .annotation-block {
-  margin-top: var(--spacing-sm);
+  margin-top: 2rem;
 }
 
 .annotation-title {
-  font-size: 0.95rem;
+  font-size: 1.4rem;
   font-weight: 400;
-  margin-bottom: 0.15rem;
+  margin-bottom: 1.15rem;
   color: var(--color-text);
 }
 
@@ -450,14 +450,16 @@ font-family: var(--font-family);
   .annotation-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 1rem;
+    
   }
 
   .annotation-item {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 0.5rem;
+
   }
 
   .annotation-label {
@@ -467,7 +469,7 @@ font-family: var(--font-family);
 
 
 .project-title {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 400;
   margin-bottom: var(--spacing-sm);
   color: var(--color-text);
@@ -477,6 +479,7 @@ font-family: var(--font-family);
   color: var(--color-text);
   line-height: 1.6;
   margin-bottom: var(--spacing-sm);
+  white-space: pre-line;
 }
 
 .tech-list {

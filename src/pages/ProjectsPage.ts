@@ -23,9 +23,9 @@ export function createProjectsPage(): HTMLElement {
   // Project items - you can expand these
   const projects = [
     {
-      title: 'Reimagined LLM Application for mobile',
-      description: 'A minimal TypeScript-based personal site with routing and clean design.',
-      tech: ['Interactive Design', 'HAI', 'SwiftUI' , 'PGVector', 'LangChain']
+      title: 'Reimagined LLM Applications for mobile',
+      description: 'Problem Statement: Most current mobile AI chat apps like ChatGPT or Gemini feel reactive and opaque, often hiding the context stored about the user.\nProposed solution: Design a user-centric AI assistant that proactively helps with day-to-day tasks while being transparent about data usage and memory. The app feels “alive” through agenda panels, conversational summaries, and customizable widgets. It also lets users inspect or delete stored context at any time promoting transparency.',
+      tech: ['Interactive Design', 'HAI', 'SwiftUI' , 'LangChain', 'PGVector']
     },
     {
       title: 'Task Management App',
@@ -62,7 +62,17 @@ export function createProjectsPage(): HTMLElement {
       techList.appendChild(techTag);
     });
 
-    const projectDesc = createElement('p', 'project-description', project.description);
+    const projectDesc = createElement('p', 'project-description');
+
+    if (project.description.includes('\n')) {
+      (projectDesc as HTMLElement).innerHTML = project.description
+        .split('\n')
+        .map(line => line.trim())
+        .filter(line => line.length > 0)
+        .join('<br><br>');
+    } else {
+      projectDesc.textContent = project.description;
+    }
 
     appendChildren(projectCard, techList, projectTitle, projectDesc);
 
@@ -72,12 +82,12 @@ export function createProjectsPage(): HTMLElement {
       const annotationTitle = createElement(
         'h4',
         'annotation-title',
-        'Image annotations'
+        'Visual Walkthrough'
       );
       const annotationSubtitle = createElement(
         'p',
         'annotation-subtitle',
-        'Callouts to highlight key parts of this project screenshot.'
+        'For full code of all three submodules, see the GitHub repositories. Scroll down for the architecture diagram.'
       );
 
       const annotationContainer = createElement('div', 'annotation-container');
@@ -237,6 +247,21 @@ export function createProjectsPage(): HTMLElement {
         architectureImageWrapper
       );
       projectCard.appendChild(architectureBlock);
+
+      const annotationBlock2 = createElement('div', 'annotation-block');
+
+
+      const annotationSubtitle2 = createElement(
+        'p',
+        'annotation-subtitle',
+        '**Note: The external app functionality shown in the 5th screenshot is simulated for demonstration purposes only and is not part of the actual app implementation.**'
+      );
+
+      appendChildren(
+        annotationBlock2,
+        annotationSubtitle2
+      );
+      projectCard.appendChild(annotationBlock2);
     }
 
     content.appendChild(projectCard);
