@@ -1,5 +1,5 @@
 import './style.css';
-import { createNavigation, updateNavigation } from './components/Navigation';
+import { createNavigation } from './components/Navigation';
 import { Router } from './utils/router';
 import { createElement, appendChildren } from './utils/dom';
 import type { NavigationItem } from './types';
