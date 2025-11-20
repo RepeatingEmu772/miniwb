@@ -27,7 +27,7 @@ const navigationItems: NavigationItem[] = [
 
 function initApp() {
   console.log('Initializing app...');
-  const app = document.querySelector('#app');
+  const app = document.querySelector<HTMLElement>('#app');
   if (!app) {
     console.error('App container not found!');
     return;
