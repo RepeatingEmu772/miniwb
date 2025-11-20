@@ -1,8 +1,9 @@
 export interface NavigationItem {
-  id: string;
   label: string;
-  href?: string;
+  path: string;
 }
+
+export type Route = () => HTMLElement;
 
 export interface PersonalInfo {
   name: string;

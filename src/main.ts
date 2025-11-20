@@ -2,6 +2,7 @@ import './style.css';
 import { createNavigation, updateNavigation } from './components/Navigation';
 import { Router } from './utils/router';
 import { createElement, appendChildren } from './utils/dom';
+import type { NavigationItem } from './types';
 import { 
   createHomePage, 
   createProjectsPage, 
@@ -14,7 +15,7 @@ import {
 
 console.log('DOM loaded, starting app...');
 
-const navigationItems = [
+const navigationItems: NavigationItem[] = [
   { label: 'Manan Mrig', path: '/' },
   { label: 'education & experience', path: '/education' },
   { label: 'projects', path: '/projects' },
