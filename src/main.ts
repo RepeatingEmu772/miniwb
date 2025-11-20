@@ -1,136 +1,91 @@
 import './style.css';
-import { Navigation } from './components/Navigation';
-import { NavigationItem } from './types';
-import { createElement, appendChildren } from './utils/dom';
+import { createNavigation, updateNavigation } from './components/Navigation';
 import { Router } from './utils/router';
+import { createElement, appendChildren } from './utils/dom';
+import { 
+  createHomePage, 
+  createProjectsPage, 
+  createEducationPage, 
+  createSkillsPage, 
+  createYoutubePage, 
+  createPlacesPage,
+  createBlogPage
+} from './pages';
 
-// Page imports
-import { createHomePage } from './pages/HomePage';
-import { createProjectsPage } from './pages/ProjectsPage';
-import { createEducationPage } from './pages/EducationPage';
-import { createSkillsPage } from './pages/SkillsPage';
-import { createYoutubePage } from './pages/YoutubePage';
-import { createPlacesPage } from './pages/PlacesPage';
-import { createBlogPage } from './pages/BlogPage';
+console.log('DOM loaded, starting app...');
 
-// Personal information - update these with your details
-const personalInfo = {
-  name: 'Manan Mrig',
-  role: 'Student and Engineer',
-  bio: 'I create meaningful digital experiences through thoughtful design and clean code. Currently focused on building tools that help me work better.'
-};
-
-// Navigation items
-const navigationItems: NavigationItem[] = [
-  { id: 'home', label: personalInfo.name }, // This will be the home link
-  { id: 'education', label: 'education & experience', href: '#education' },
-  { id: 'projects', label: 'projects', href: '#projects' },
-  { id: 'skills', label: 'skills', href: '#skills' },
-  { id: 'youtube', label: 'youtube', href: '#youtube' },
-  { id: 'places', label: 'places', href: '#places' },
-  { id: 'blog', label: 'blog', href: '#blog' },
+const navigationItems = [
+  { label: 'Manan Mrig', path: '/' },
+  { label: 'education & experience', path: '/education' },
+  { label: 'projects', path: '/projects' },
+  { label: 'skills', path: '/skills' },
+  { label: 'youtube', path: '/youtube' },
+  { label: 'places', path: '/places' },
+  { label: 'blog', path: '/blog' }
 ];
 
-let navigation: Navigation;
-let router: Router;
-
-// Initialize the application
-function initApp(): void {
+function initApp() {
   console.log('Initializing app...');
-  const app = document.getElementById('app');
+  const app = document.querySelector('#app');
   if (!app) {
-    console.error('App element not found!');
+    console.error('App container not found!');
     return;
   }
 
-  // Create main content container
-  const mainContent = createElement('div', 'main-content');
-  console.log('Created main content container');
-  
-  // Initialize router with main content container
-  router = new Router(mainContent);
+  const router = new Router();
   console.log('Router initialized');
-  
-  // Add routes
-  router.addRoute({
-    path: '/home',
-    handler: createHomePage,
-    title: `${personalInfo.name} - Home`
-  });
-  
-  router.addRoute({
-    path: '/projects',
-    handler: createProjectsPage,
-    title: `Projects - ${personalInfo.name}`
-  });
-  
-  router.addRoute({
-    path: '/education',
-    handler: createEducationPage,
-    title: `Education - ${personalInfo.name}`
-  });
-  
-  router.addRoute({
-    path: '/skills',
-    handler: createSkillsPage,
-    title: `Skills - ${personalInfo.name}`
-  });
-  
-  router.addRoute({
-    path: '/youtube',
-    handler: createYoutubePage,
-    title: `YouTube - ${personalInfo.name}`
-  });
-  
-  router.addRoute({
-    path: '/places',
-    handler: createPlacesPage,
-    title: `Places - ${personalInfo.name}`
+
+  const navigation = createNavigation(
+    navigationItems,
+    window.location.pathname,
+    (path: string) => router.navigate(path)
+  );
+  console.log('Navigation created');
+
+  const main = createElement('main', 'main-content');
+
+  router.addRoute('/', () => {
+    console.log('Rendering home page');
+    return createHomePage();
   });
 
-  router.addRoute({
-    path: '/blog',
-    handler: createBlogPage,
-    title: `Blog - ${personalInfo.name}`
+  router.addRoute('/projects', () => {
+    console.log('Rendering projects page');
+    return createProjectsPage();
+  });
+
+  router.addRoute('/education', () => {
+    console.log('Rendering education page');
+    return createEducationPage();
+  });
+
+  router.addRoute('/skills', () => {
+    console.log('Rendering skills page');
+    return createSkillsPage();
+  });
+
+  router.addRoute('/youtube', () => {
+    console.log('Rendering youtube page');
+    return createYoutubePage();
+  });
+
+  router.addRoute('/places', () => {
+    console.log('Rendering places page');
+    return createPlacesPage();
+  });
+
+  router.addRoute('/blog', () => {
+    console.log('Rendering blog page');
+    return createBlogPage();
   });
 
   console.log('Routes added');
 
-  // Create navigation with router callback
-  navigation = new Navigation(navigationItems, (path: string) => {
-    console.log('Navigation clicked:', path);
-    router.navigate(path);
-    navigation.updateActiveLink(path);
-  });
-
-  console.log('Navigation created');
-
-  // Append navigation and main content to app
-  appendChildren(app, navigation.render(), mainContent);
+  appendChildren(app, navigation, main);
   console.log('App elements appended');
-  
-  // Start the router now that routes are registered and DOM is mounted
-  router.start();
 
-  // Set initial active link after router starts
-  setTimeout(() => {
-    const currentRoute = router.getCurrentRoute() || window.location.pathname || '/home';
-    console.log('Setting initial active link for route:', currentRoute);
-    navigation.updateActiveLink(currentRoute);
-  }, 50);
+  router.start();
+  console.log('Router started');
 }
 
-// Start the app when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('DOM loaded, starting app...');
-  try {
-    initApp();
-  } catch (error) {
-    console.error('Error initializing app:', error);
-    // Fallback: show a simple message
-    const app = document.getElementById('app');
-    if (app) {
-      app.innerHTML = '<div style="padding: 2rem; font-family: Inter, sans-serif;"><h1>Loading...</h1><p>If this message persists, check the console for errors.</p></div>';
-    }
-  }
-});
+document.addEventListener('DOMContentLoaded', initApp);

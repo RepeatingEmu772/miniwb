@@ -1,93 +1,86 @@
-export type RouteHandler = () => HTMLElement;
-
-export interface Route {
-  path: string;
-  handler: RouteHandler;
-  title?: string;
-}
+import type { Route } from '../types';
 
 export class Router {
   private routes: Map<string, Route> = new Map();
-  private currentRoute: string = '';
-  private contentContainer: HTMLElement;
+  private mainContent: HTMLElement | null = null;
 
-  constructor(contentContainer: HTMLElement) {
-    this.contentContainer = contentContainer;
-    this.init();
+  constructor() {
+    console.log('Router constructor called');
+    window.addEventListener('popstate', () => {
+      console.log('Popstate event triggered');
+      this.handleRoute();
+    });
   }
 
-  private init(): void {
-    // Listen for navigation events
-    window.addEventListener('popstate', () => this.handleRoute());
-    
+  addRoute(path: string, handler: Route): void {
+    console.log(`Adding route: ${path}`);
+    this.routes.set(path, handler);
   }
 
-  // Start handling routes after routes have been registered
-  public start(): void {
+  start(): void {
+    console.log('Router start() called');
+    this.mainContent = document.querySelector('.main-content');
+    if (!this.mainContent) {
+      console.error('Main content element not found!');
+      return;
+    }
     this.handleRoute();
   }
 
-  public addRoute(route: Route): void {
-    this.routes.set(route.path, route);
-  }
-
-  public navigate(path: string): void {
-    if (path === this.currentRoute) return;
-    
-    console.log('Navigating to:', path);
+  navigate(path: string): void {
+    console.log(`Navigating to: ${path}`);
     window.history.pushState({}, '', path);
     this.handleRoute();
   }
 
   private handleRoute(): void {
-    let path = window.location.pathname;
+    const path = window.location.pathname;
+    console.log(`Handling route: ${path}`);
     
-    // Handle root path
-    if (path === '/') {
-      path = '/home';
-    }
-    
-    console.log('Handling route:', path);
     const route = this.routes.get(path);
-
+    
     if (route) {
-      this.currentRoute = path;
       this.renderRoute(route);
     } else {
-      console.log('Route not found for', path);
-      // If the requested path isn't found, try redirecting to /home only
-      // if we're not already trying to load /home. This avoids a redirect
-      // loop when routes haven't been registered or /home is missing.
-      if (path !== '/home') {
-        console.log('Redirecting to /home');
-        this.navigate('/home');
+      console.log(`Route not found for ${path}`);
+      // Redirect to home (/) instead of /home
+      if (path !== '/') {
+        console.log('Redirecting to /');
+        this.navigate('/');
       } else {
-        console.error('Home route is missing - cannot render content.');
+        console.error('Home route (/) is missing - cannot render content.');
       }
     }
   }
 
   private renderRoute(route: Route): void {
-    console.log('Rendering route:', route);
-    // Clear current content
-    this.contentContainer.innerHTML = '';
-    
-    // Update document title
-    if (route.title) {
-      document.title = route.title;
+    if (!this.mainContent) {
+      console.error('Main content not available');
+      return;
     }
+
+    console.log('Rendering route:', route);
     
-    // Render new content
     try {
-      const content = route.handler();
-      this.contentContainer.appendChild(content);
+      const content = route();
+      this.mainContent.innerHTML = '';
+      this.mainContent.appendChild(content);
+      
+      // Update navigation active state
+      const links = document.querySelectorAll('.nav-link');
+      links.forEach((link) => {
+        const href = link.getAttribute('href');
+        if (href === window.location.pathname) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+      
       console.log('Route rendered successfully');
     } catch (error) {
       console.error('Error rendering route:', error);
+      this.mainContent.innerHTML = '<div class="error">Failed to load page</div>';
     }
-  }
-
-  public getCurrentRoute(): string {
-    return this.currentRoute;
   }
 }

@@ -1,81 +1,108 @@
-import { NavigationItem } from '../types';
-import { createElement } from '../utils/dom';
+import { createElement, appendChildren } from '../utils/dom';
+import type { NavigationItem } from '../types';
 
-export class Navigation {
-  private element: HTMLElement;
-  private onNavigate?: (path: string) => void;
-  
-  constructor(private items: NavigationItem[], onNavigate?: (path: string) => void) {
-    this.onNavigate = onNavigate;
-    this.element = this.createNavigation();
-  }
+export function createNavigation(
+  items: NavigationItem[],
+  currentPath: string,
+  onNavigate: (path: string) => void
+): HTMLElement {
+  const nav = createElement('nav', 'navigation');
+  const navList = createElement('ul', 'nav-list');
 
-  private createNavigation(): HTMLElement {
-    const nav = createElement('nav', 'navigation');
+  items.forEach((item) => {
+    const listItem = createElement('li', 'nav-item');
+    const link = createElement('a', 'nav-link');
     
-    const list = createElement('ul', 'nav-list');
+    if (item.path === '/') {
+      link.classList.add('nav-home');
+    }
     
-    this.items.forEach(item => {
-      const listItem = createElement('li', 'nav-item');
+    if (currentPath === item.path) {
+      link.classList.add('active');
+    }
+
+    link.textContent = item.label;
+    link.href = item.path;
+
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      onNavigate(item.path);
       
-      if (item.href) {
-        const link = createElement('a', 'nav-link', item.label);
-        link.href = item.href;
-        link.addEventListener('click', (e) => this.handleNavClick(e, item.href!));
-        listItem.appendChild(link);
-      } else {
-        // Home link (name)
-        const link = createElement('a', 'nav-link nav-home', item.label);
-        link.href = '/home';
-        link.addEventListener('click', (e) => this.handleNavClick(e, '/home'));
-        listItem.appendChild(link);
+      // Close mobile menu when clicking a link
+      const navigation = document.querySelector('.navigation');
+      const hamburger = document.querySelector('.hamburger');
+      if (navigation && hamburger) {
+        navigation.classList.remove('active');
+        hamburger.classList.remove('active');
       }
-      
-      list.appendChild(listItem);
     });
-    
-    nav.appendChild(list);
-    return nav;
-  }
 
-  private handleNavClick(event: Event, path: string): void {
-    event.preventDefault();
-    if (this.onNavigate) {
-      // Remove # from path if present
-      const cleanPath = path.startsWith('#') ? path.substring(1) : path;
-      // Ensure path starts with /
-      const routePath = cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`;
-      this.onNavigate(routePath);
-    }
-  }
+    listItem.appendChild(link);
+    navList.appendChild(listItem);
+  });
 
-  public updateActiveLink(currentPath: string): void {
-    console.log('Updating active link for path:', currentPath);
+  appendChildren(nav, navList);
+
+  // Create hamburger menu button only once
+  const existingHamburger = document.querySelector('.hamburger');
+  if (!existingHamburger) {
+    const hamburger = createElement('button', 'hamburger');
+    hamburger.setAttribute('aria-label', 'Toggle menu');
     
-    // Remove active class from all links
-    const links = this.element.querySelectorAll('.nav-link');
-    links.forEach(link => link.classList.remove('active'));
+    const hamburgerIcon = createElement('div', 'hamburger-icon');
+    hamburgerIcon.innerHTML = `
+      <span></span>
+      <span></span>
+      <span></span>
+    `;
     
-    // Add active class to current link
-    const activeLink = Array.from(links).find(link => {
-      const href = (link as HTMLAnchorElement).href;
-      const linkPath = href.split('/').pop() || 'home';
-      const cleanCurrentPath = currentPath.replace('/', '') || 'home';
-      
-      console.log('Comparing linkPath:', linkPath, 'with cleanCurrentPath:', cleanCurrentPath);
-      
-      return linkPath === cleanCurrentPath || (cleanCurrentPath === 'home' && !href.includes('#'));
+    hamburger.appendChild(hamburgerIcon);
+
+    // Toggle menu on hamburger click
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const navigation = document.querySelector('.navigation');
+      if (navigation) {
+        navigation.classList.toggle('active');
+        hamburger.classList.toggle('active');
+      }
     });
-    
-    if (activeLink) {
-      activeLink.classList.add('active');
-      console.log('Active link set:', activeLink);
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      const navigation = document.querySelector('.navigation');
+      const currentHamburger = document.querySelector('.hamburger');
+      
+      if (navigation && currentHamburger && 
+          !navigation.contains(target) && 
+          !currentHamburger.contains(target)) {
+        navigation.classList.remove('active');
+        currentHamburger.classList.remove('active');
+      }
+    });
+
+    // Wait for DOM to be ready before appending
+    if (document.body) {
+      document.body.appendChild(hamburger);
     } else {
-      console.log('No matching link found for path:', currentPath);
+      document.addEventListener('DOMContentLoaded', () => {
+        document.body.appendChild(hamburger);
+      });
     }
   }
 
-  public render(): HTMLElement {
-    return this.element;
-  }
+  return nav;
+}
+
+export function updateNavigation(currentPath: string): void {
+  const links = document.querySelectorAll('.nav-link');
+  links.forEach((link) => {
+    const href = link.getAttribute('href');
+    if (href === currentPath) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
 }
