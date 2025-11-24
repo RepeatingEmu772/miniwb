@@ -20,7 +20,7 @@ const navigationItems: NavigationItem[] = [
   { label: 'projects', path: '/projects' },
   { label: 'skills', path: '/skills' },
   { label: 'youtube', path: '/youtube' },
-  { label: 'places', path: '/places' },
+  { label: 'scenes', path: '/places' },
   { label: 'academic cv', path: '/cv.pdf' },
   { label: 'professional resume', path: '/resume.pdf' }
 ];

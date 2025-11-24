@@ -4,69 +4,90 @@ export function createPlacesPage(): HTMLElement {
   const page = createElement('div', 'page places-page');
   
   const header = createElement('section', 'page-header');
-  const title = createElement('h1', 'page-title', 'Places');
-  const subtitle = createElement('p', 'page-subtitle', 'Photography and stories from travels around the world');
+  const title = createElement('h1', 'page-title', 'Scenes');
+  const subtitle = createElement('p', 'page-subtitle', 'Scenes that live rent free in my heart');
   
   appendChildren(header, title, subtitle);
   
   const content = createElement('section', 'page-content');
 
-  // Add number list below the content (1-5)
+  // Places data - 31 locations with their years
+  const places = [
+    { location: 'Minneapolis', year: '2021' },
+    { location: 'Chicago', year: '2022' },
+    { location: 'Dubai', year: '2025' },
+    { location: 'Kendrick Lamar & SZA', year: '2025' },
+    { location: 'Dubai', year: '2025' },
+    { location: 'Detroit', year: '2025' },
+    { location: 'Minneapolis', year: '2024' },
+    { location: 'Minneapolis', year: '2022' },
+    { location: 'New Delhi', year: '2022' },
+    { location: 'Minneapolis', year: '2024' },
+    { location: 'Santa Cruz', year: '2022' },
+    { location: 'Dubai', year: '2025' },
+    { location: 'Delhi', year: '2025' },
+    { location: 'Dubai', year: '2025' },
+    { location: 'Detroit', year: '2025' },
+    { location: 'Lake of the Isles', year: '2025' },
+    { location: 'Detroit', year: '2025' },
+    { location: 'My first solo apartment', year: '2025' },
+    { location: 'Kendrick Lamar', year: '2023' },
+    { location: 'Baby Keem', year: '2023' },
+    { location: 'SZA', year: '2025' },
+    { location: 'Playing Smash Bros at work', year: '2025' },
+    { location: 'Ferrari World', year: '2025' },
+    { location: 'St. Paul', year: '2022' },
+    { location: 'Kendrick Lamar', year: '2023' },
+    { location: 'Minneapolis', year: '2023' },
+    { location: 'Minneapolis', year: '2025' },
+    { location: 'Wisconsin', year: '2022' },
+    { location: 'Minneapolis', year: '2023' },
+    { location: 'Dubai', year: '2025' },
+    { location: 'Minneapolis', year: '2021' }
+  ];
+
+  // Create place cards with images
+  places.forEach((place, idx) => {
+    const placeCard = createElement('div', 'place-card');
+    placeCard.setAttribute('data-index', String(idx + 1));
+
+    // Image container
+    const imageWrapper = createElement('div', 'place-image-wrapper');
+    
+    // Add left and right click zones
+    const leftZone = createElement('div', 'image-nav-zone left-zone');
+    const rightZone = createElement('div', 'image-nav-zone right-zone');
+    
+    const image = createElement('img', 'place-image') as HTMLImageElement;
+    image.src = `/image/scenes/${idx + 1}.jpeg`;
+    image.alt = place.location;
+    image.loading = 'lazy';
+    
+    appendChildren(imageWrapper, leftZone, image, rightZone);
+
+    // Info overlay
+    const placeInfo = createElement('div', 'place-info');
+    const location = createElement('h3', 'place-location', place.location);
+    const year = createElement('span', 'place-year', place.year);
+    appendChildren(placeInfo, location, year);
+
+    appendChildren(placeCard, imageWrapper, placeInfo);
+    content.appendChild(placeCard);
+  });
+
+  // Number list for navigation (1-31)
   const numberList = createElement('div', 'number-list');
-  const numbers = [1,2,3,4,5];
+  const numbers = Array.from({ length: 31 }, (_, i) => i + 1);
   numbers.forEach(num => {
     const numberItem = createElement('span', 'number-item', num.toString());
     numberList.appendChild(numberItem);
   });
 
-  // Places content
-  const places = [
-    {
-      location: 'Tokyo, Japan',
-      description: 'A city where tradition meets cutting-edge technology. Inspiring architecture and design everywhere.',
-      year: '2023'
-    },
-    {
-      location: 'Reykjavik, Iceland',
-      description: 'Minimalist design philosophy reflected in the landscape and culture. Clean lines and natural beauty.',
-      year: '2022'
-    },
-    {
-      location: 'Copenhagen, Denmark',
-      description: 'Scandinavian design at its finest. Functional beauty and sustainable living practices.',
-      year: '2023'
-    },
-    {
-      location: 'Lisbon, Portugal',
-      description: 'Sunlit streets and ceramic tiles. A calm, aesthetic city with great food.',
-      year: '2021'
-    },
-    {
-      location: 'Vancouver, Canada',
-      description: 'Coastal, green, and designed around nature. Strong architecture and outdoor life.',
-      year: '2020'
-    }
-  ];
-
-  places.forEach((place, idx) => {
-    const placeCard = createElement('div', 'place-card');
-    placeCard.setAttribute('data-index', String(idx + 1));
-
-    const location = createElement('h3', 'place-location', place.location);
-    const year = createElement('span', 'place-year', place.year);
-    const description = createElement('p', 'place-description', place.description);
-
-    appendChildren(placeCard, location, year, description);
-    content.appendChild(placeCard);
-  });
-
-  // controls wrapper
+  // Controls wrapper
   const controls = createElement('div', 'number-controls');
   const prevBtn = createElement('div', 'number-button prev');
-  // arrow with dash after the arrow
   prevBtn.innerHTML = `<span class="icon">◀</span><span>prev</span>`;
   const nextBtn = createElement('div', 'number-button next');
-  // dash before the arrow
   nextBtn.innerHTML = `<span>next</span><span class="icon">▶</span>`;
   appendChildren(controls, prevBtn, numberList, nextBtn);
 
@@ -100,20 +121,37 @@ export function createPlacesPage(): HTMLElement {
       applyFilter(selected);
     });
 
-    // initialize with index 1 active
+    // Initialize with index 1 active
     applyFilter(1);
 
-    // arrow navigation logic
+    // Arrow navigation logic
     const clamp = (v: number) => Math.max(1, Math.min(numbers.length, v));
-    prevBtn.addEventListener('click', () => {
+    
+    const navigateToPrev = () => {
       const active = page.querySelector('.number-item.active');
       const cur = active ? parseInt(active.textContent || '1', 10) : 1;
       applyFilter(clamp(cur - 1));
-    });
-    nextBtn.addEventListener('click', () => {
+    };
+    
+    const navigateToNext = () => {
       const active = page.querySelector('.number-item.active');
       const cur = active ? parseInt(active.textContent || '1', 10) : 1;
       applyFilter(clamp(cur + 1));
+    };
+    
+    prevBtn.addEventListener('click', navigateToPrev);
+    nextBtn.addEventListener('click', navigateToNext);
+    
+    // Add click handlers to image zones
+    const leftZones = page.querySelectorAll('.left-zone');
+    const rightZones = page.querySelectorAll('.right-zone');
+    
+    leftZones.forEach(zone => {
+      zone.addEventListener('click', navigateToPrev);
+    });
+    
+    rightZones.forEach(zone => {
+      zone.addEventListener('click', navigateToNext);
     });
   }
   
