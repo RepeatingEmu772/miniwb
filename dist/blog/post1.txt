@@ -1,0 +1,9 @@
+My first post
+
+This is a sample blog post stored in a plain text file under public/blog/post1.txt.
+
+- Notes about projects
+- Quick thoughts
+- Links to things
+
+More content can be added here. Replace with markdown or HTML as needed.
