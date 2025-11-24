@@ -21,6 +21,9 @@
   --grad1: #004459;
   --grad2: #3c6e71;
   --color-accent: #bce73c;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-color-subtle: rgba(255, 255, 255, 0.06);
+  --border-color-light: rgba(255, 255, 255, 0.08);
   --font-family: 'NowAlt', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --line-height: 1.6;
   --spacing-xs: 0.5rem;
@@ -44,6 +47,46 @@ font-family: var(--font-family);
   background-size: 400% 400%;
   animation: gradientShift 12s ease infinite;
   font-weight: 300;
+}
+
+/* Theme variations */
+body.theme-light {
+  --color-text: #2c2c2c;
+  --color-text-light: #666666;
+  --color-bg: #f5f5f5;
+  --color-accent: #6cb5b9;
+  --border-color: rgba(0, 0, 0, 0.15);
+  --border-color-subtle: rgba(0, 0, 0, 0.1);
+  --border-color-light: rgba(0, 0, 0, 0.12);
+  color: var(--color-text);
+  background: #f5f5f5;
+  animation: none;
+}
+
+body.theme-dark {
+  --color-text: #ffffff;
+  --color-text-light: rgba(255,255,255,0.85);
+  --color-bg: #1a1a1a;
+  --color-accent: #6cb5b9;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-color-subtle: rgba(255, 255, 255, 0.06);
+  --border-color-light: rgba(255, 255, 255, 0.08);
+  color: var(--color-text);
+  background: #1a1a1a;
+  animation: none;
+}
+
+body.theme-gradient {
+  --color-text: #ffffff;
+  --color-text-light: rgba(255,255,255,0.85);
+  --color-bg: #00000000;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-color-subtle: rgba(255, 255, 255, 0.06);
+  --border-color-light: rgba(255, 255, 255, 0.08);
+  color: var(--color-text);
+  background: linear-gradient(270deg, var(--grad1), var(--grad2));
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
 }
 
 @keyframes gradientShift {
@@ -153,7 +196,7 @@ font-family: var(--font-family);
   border-radius: 16px;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-color);
 }
 
 .hero-image {
@@ -175,7 +218,7 @@ font-family: var(--font-family);
   font-weight: 300;
   letter-spacing: -0.02em;
   margin-bottom: var(--spacing-sm);
-  color: var(--color-text);
+  color: var(--color-accent);
 }
 
 .hero-subtitle {
@@ -196,14 +239,14 @@ font-family: var(--font-family);
 .home-section {
   margin-top: var(--spacing-xl);
   padding-top: var(--spacing-lg);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--border-color);
 }
 
 .section-title {
   font-size: 2rem;
   font-weight: 300;
   margin-bottom: var(--spacing-md);
-  color: var(--color-text);
+  color: var(--color-accent);
 }
 
 .section-content {
@@ -218,7 +261,7 @@ font-family: var(--font-family);
   padding: var(--spacing-md);
   background: rgba(255, 255, 255, 0.03);
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-color-light);
 }
 
 .item-title {
@@ -284,7 +327,7 @@ font-family: var(--font-family);
   padding: var(--spacing-lg);
   background: rgba(255, 255, 255, 0.03);
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-color-light);
   text-decoration: none;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -342,7 +385,7 @@ font-family: var(--font-family);
 .site-footer {
   margin-top: var(--spacing-xl);
   padding: var(--spacing-lg) 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--border-color);
   text-align: center;
 }
 
@@ -379,7 +422,7 @@ font-family: var(--font-family);
 /* Content sections */
 .content-section {
   padding: var(--spacing-md) 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid var(--border-color-subtle);
 }
 
 .content-section:last-child {
@@ -655,7 +698,7 @@ font-family: var(--font-family);
   font-weight: 300;
   letter-spacing: -0.02em;
   margin-bottom: var(--spacing-sm);
-  color: var(--color-text);
+  color: var(--color-accent);
 }
 
 .page-subtitle {
@@ -824,7 +867,7 @@ font-family: var(--font-family);
 /* Education cards */
 .education-card {
   padding: var(--spacing-md) 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid var(--border-color-subtle);
 }
 
 .education-card:last-child {
@@ -860,7 +903,7 @@ font-family: var(--font-family);
 /* Skills */
 .skill-category {
   padding: var(--spacing-md) 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid var(--border-color-subtle);
 }
 
 .skill-category:last-child {
@@ -949,4 +992,81 @@ font-family: var(--font-family);
 .place-description {
   color: var(--color-text);
   line-height: 1.6;
+}
+
+/* Theme Switcher */
+.theme-switcher {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 8px;
+  border-radius: 24px;
+  z-index: 1000;
+}
+
+.theme-label {
+  display: none; /* Hide label, using icons/text in buttons */
+}
+
+.theme-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--color-text);
+  padding: 8px 16px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 400;
+  transition: all 0.3s ease;
+}
+
+.theme-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.theme-btn.active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #000;
+  font-weight: 500;
+}
+
+/* Adjust theme switcher for light mode */
+body.theme-light .theme-switcher {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+body.theme-light .theme-btn {
+  border-color: rgba(0, 0, 0, 0.2);
+  color: #2c2c2c;
+}
+
+body.theme-light .theme-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Adjust theme switcher for dark mode */
+body.theme-dark .theme-switcher {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 768px) {
+  .theme-switcher {
+    top: 10px;
+    right: 10px;
+    padding: 6px;
+    gap: 6px;
+  }
+  
+  .theme-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
 }

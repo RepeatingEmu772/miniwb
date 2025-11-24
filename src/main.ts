@@ -1,6 +1,7 @@
 import './style.css';
 import { createNavigation } from './components/Navigation';
 import { createFooter } from './components/Footer';
+import { createThemeSwitcher } from './components/ThemeSwitcher';
 import { Router } from './utils/router';
 import { createElement, appendChildren } from './utils/dom';
 import type { NavigationItem } from './types';
@@ -42,6 +43,7 @@ function initApp() {
   );
   console.log('Navigation created');
 
+  const themeSwitcher = createThemeSwitcher();
   const main = createElement('main', 'main-content');
   const footer = createFooter();
 
@@ -72,7 +74,7 @@ function initApp() {
 
   console.log('Routes added');
 
-  appendChildren(app, navigation, main, footer);
+  appendChildren(app, themeSwitcher, navigation, main, footer);
   console.log('App elements appended');
 
   router.start();
