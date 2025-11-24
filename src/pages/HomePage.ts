@@ -34,7 +34,7 @@ export function createHomePage(): HTMLElement {
   const education = createElement('div', 'education-item');
   const schoolName = createElement('h3', 'item-title', 'University of Minnesota, Twin Cities');
   const degree = createElement('p', 'item-subtitle', 'B.S. in Computer Science');
-  const eduYear = createElement('span', 'item-year', '2020 - 2024');
+  const eduYear = createElement('span', 'item-year', 'September 2020 - May 2024');
   const eduDesc = createElement('p', 'item-description', 
     'Focused on Artificial Intelligence, Machine Learning, Software Engineering and Systems Design. Dean\'s List honoree.'
   );
@@ -73,7 +73,7 @@ export function createHomePage(): HTMLElement {
   
   // Resume link
   const resumeLink = createElement('p', 'resume-link');
-  resumeLink.innerHTML = 'view my <a href="/resume.pdf" target="_blank">resume</a> for complete experiences';
+  resumeLink.innerHTML = 'view my <a href="/resume.pdf" target="_blank">resume</a> for all experiences and in depth descriptions';
   
   // Continuous Learning section
   const learningSection = createElement('section', 'home-section');
@@ -130,7 +130,7 @@ export function createHomePage(): HTMLElement {
   
   // View all projects link
   const viewAllLink = createElement('p', 'view-all-link');
-  viewAllLink.innerHTML = 'view the <a href="/projects">projects</a> page for all the projects and descriptions';
+  viewAllLink.innerHTML = 'view the <a href="/projects">projects</a> page for all the projects and in depth descriptions';
   
   appendChildren(featuredSection, featuredTitle, featuredGrid, viewAllLink);
   

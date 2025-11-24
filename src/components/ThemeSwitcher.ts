@@ -22,12 +22,15 @@ export function createThemeSwitcher(): HTMLElement {
   // Theme switching logic
   const applyTheme = (theme: string) => {
     const body = document.body;
+    const html = document.documentElement;
     
-    // Remove all theme classes
+    // Remove all theme classes from both html and body
     body.classList.remove('theme-light', 'theme-dark', 'theme-gradient');
+    html.classList.remove('theme-light', 'theme-dark', 'theme-gradient');
     
-    // Add the selected theme class
+    // Add the selected theme class to both html and body
     body.classList.add(`theme-${theme}`);
+    html.classList.add(`theme-${theme}`);
     
     // Update active button
     themeSwitcher.querySelectorAll('.theme-btn').forEach(btn => {

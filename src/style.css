@@ -1,11 +1,32 @@
-/* Reset and base styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Local custom font */
+html {
+  background: linear-gradient(270deg, #004459, #3c6e71);
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+  min-height: 100%;
+}
+
+html.theme-light {
+  background: #f5f5f5;
+  animation: none;
+}
+
+html.theme-dark {
+  background: #1a1a1a;
+  animation: none;
+}
+
+html.theme-gradient {
+  background: linear-gradient(270deg, #004459, #3c6e71);
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+}
+
 @font-face {
   font-family: 'NowAlt';
   src: url('/font/NowAlt-Regular.otf') format('opentype');
@@ -51,8 +72,8 @@ font-family: var(--font-family);
 
 /* Theme variations */
 body.theme-light {
-  --color-text: #2c2c2c;
-  --color-text-light: #666666;
+  --color-text: #020202;
+  --color-text-light: #3b3b3b;
   --color-bg: #f5f5f5;
   --color-accent: #6cb5b9;
   --border-color: rgba(0, 0, 0, 0.15);
@@ -109,7 +130,6 @@ body.theme-gradient {
 
 /* Navigation */
 .navigation {
-  /* Pin navigation to the absolute left edge of the viewport */
   position: fixed;
   left: 20px;
   top: var(--spacing-md);
@@ -117,7 +137,6 @@ body.theme-gradient {
   height: calc(100vh - var(--spacing-md));
   display: block;
   z-index: 20;
-  /* minimal internal padding so the text sits near the corner */
   padding-left: 8px;
 }
 
@@ -139,7 +158,6 @@ body.theme-gradient {
   transition: color 0.2s ease;
   display: block;
   padding: var(--spacing-xs) 0;
-  /* ensure link text matches item size */
   font-size: 16px;
 }
 
@@ -155,7 +173,7 @@ body.theme-gradient {
 
 /* Larger home link on desktop for emphasis */
 .nav-home {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 }
 
 .nav-text {
@@ -284,7 +302,7 @@ body.theme-gradient {
   margin-bottom: 0.75rem;
   padding: 0.25rem 0.75rem;
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
+  border-radius: 16px;
 }
 
 .item-description {
