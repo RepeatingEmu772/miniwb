@@ -1,28 +1,27 @@
 import './style.css';
 import { createNavigation } from './components/Navigation';
+import { createFooter } from './components/Footer';
 import { Router } from './utils/router';
 import { createElement, appendChildren } from './utils/dom';
 import type { NavigationItem } from './types';
 import { 
   createHomePage, 
   createProjectsPage, 
-  createEducationPage, 
   createSkillsPage, 
   createYoutubePage, 
-  createPlacesPage,
-  createBlogPage
+  createPlacesPage
 } from './pages';
 
 console.log('DOM loaded, starting app...');
 
 const navigationItems: NavigationItem[] = [
   { label: 'Manan Mrig', path: '/' },
-  { label: 'education & experience', path: '/education' },
   { label: 'projects', path: '/projects' },
   { label: 'skills', path: '/skills' },
   { label: 'youtube', path: '/youtube' },
   { label: 'places', path: '/places' },
-  { label: 'blog', path: '/blog' }
+  { label: 'academic cv', path: '/cv.pdf' },
+  { label: 'professional resume', path: '/resume.pdf' }
 ];
 
 function initApp() {
@@ -44,6 +43,7 @@ function initApp() {
   console.log('Navigation created');
 
   const main = createElement('main', 'main-content');
+  const footer = createFooter();
 
   router.addRoute('/', () => {
     console.log('Rendering home page');
@@ -53,11 +53,6 @@ function initApp() {
   router.addRoute('/projects', () => {
     console.log('Rendering projects page');
     return createProjectsPage();
-  });
-
-  router.addRoute('/education', () => {
-    console.log('Rendering education page');
-    return createEducationPage();
   });
 
   router.addRoute('/skills', () => {
@@ -75,14 +70,9 @@ function initApp() {
     return createPlacesPage();
   });
 
-  router.addRoute('/blog', () => {
-    console.log('Rendering blog page');
-    return createBlogPage();
-  });
-
   console.log('Routes added');
 
-  appendChildren(app, navigation, main);
+  appendChildren(app, navigation, main, footer);
   console.log('App elements appended');
 
   router.start();

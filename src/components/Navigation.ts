@@ -24,18 +24,28 @@ export function createNavigation(
     link.textContent = item.label;
     link.href = item.path;
 
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      onNavigate(item.path);
-      
-      // Close mobile menu when clicking a link
-      const navigation = document.querySelector('.navigation');
-      const hamburger = document.querySelector('.hamburger');
-      if (navigation && hamburger) {
-        navigation.classList.remove('active');
-        hamburger.classList.remove('active');
-      }
-    });
+    // Check if it's a PDF link (external file)
+    const isPDF = item.path.endsWith('.pdf');
+    
+    if (isPDF) {
+      // For PDF links, open in new tab
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
+    } else {
+      // For regular pages, use the router
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        onNavigate(item.path);
+        
+        // Close mobile menu when clicking a link
+        const navigation = document.querySelector('.navigation');
+        const hamburger = document.querySelector('.hamburger');
+        if (navigation && hamburger) {
+          navigation.classList.remove('active');
+          hamburger.classList.remove('active');
+        }
+      });
+    }
 
     listItem.appendChild(link);
     navList.appendChild(listItem);

@@ -23,12 +23,12 @@ export function createProjectsPage(): HTMLElement {
   // Project items - you can expand these
   const projects = [
     {
-      title: 'Reimagined LLM Applications for mobile',
+      title: 'Mook PAI: Reimagined LLM Application for mobile',
       description: 'Problem Statement: Most current mobile AI chat apps like ChatGPT or Gemini feel reactive and opaque, often hiding the context stored about the user.\nProposed solution: Design a user-centric AI assistant that proactively helps with day-to-day tasks while being transparent about data usage and memory. The app feels “alive” through agenda panels, conversational summaries, and customizable widgets. It also lets users inspect or delete stored context at any time promoting transparency.',
       tech: ['Interactive Design', 'HAI', 'SwiftUI' , 'LangChain', 'PGVector']
     },
     {
-      title: 'Task Management App',
+      title: 'ProPosterous: Human-AI co-creation canvas for creating posters',
       description: 'A productivity app built with modern web technologies.',
       tech: ['React', 'Node.js', 'MongoDB']
     },
