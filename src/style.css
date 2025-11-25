@@ -399,6 +399,46 @@ body.theme-gradient {
   opacity: 0.8;
 }
 
+/* Social Media Icons in Navigation */
+.nav-social {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  transition: all 0.3s ease;
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+.social-icon:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  color: var(--accent);
+}
+
+.social-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 768px) {
+  .nav-social {
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    width: 100%;
+  }
+}
+
 /* Footer */
 .site-footer {
   margin-top: var(--spacing-xl);
@@ -608,6 +648,7 @@ body.theme-gradient {
     backdrop-filter: blur(20px);
     overflow-y: auto;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
   }
