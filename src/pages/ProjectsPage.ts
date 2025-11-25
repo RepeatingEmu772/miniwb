@@ -437,6 +437,14 @@ export function createProjectsPage(): HTMLElement {
       if (isNaN(selected)) return;
 
       applyFilter(selected);
+      
+      // Scroll to the top of the selected project card
+      setTimeout(() => {
+        const activeCard = page.querySelector(`[data-index="${selected}"]`);
+        if (activeCard) {
+          activeCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50);
     });
 
     // Check for hash in URL to show specific project
@@ -459,12 +467,30 @@ export function createProjectsPage(): HTMLElement {
     prevBtn.addEventListener('click', () => {
       const active = page.querySelector('.number-item.active');
       const cur = active ? parseInt(active.textContent || '1', 10) : 1;
-      applyFilter(clamp(cur - 1));
+      const newIndex = clamp(cur - 1);
+      applyFilter(newIndex);
+      
+      // Scroll to the top of the new project
+      setTimeout(() => {
+        const activeCard = page.querySelector(`[data-index="${newIndex}"]`);
+        if (activeCard) {
+          activeCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50);
     });
     nextBtn.addEventListener('click', () => {
       const active = page.querySelector('.number-item.active');
       const cur = active ? parseInt(active.textContent || '1', 10) : 1;
-      applyFilter(clamp(cur + 1));
+      const newIndex = clamp(cur + 1);
+      applyFilter(newIndex);
+      
+      // Scroll to the top of the new project
+      setTimeout(() => {
+        const activeCard = page.querySelector(`[data-index="${newIndex}"]`);
+        if (activeCard) {
+          activeCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50);
     });
   }
 

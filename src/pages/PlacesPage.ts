@@ -5,7 +5,7 @@ export function createPlacesPage(): HTMLElement {
   
   const header = createElement('section', 'page-header');
   const title = createElement('h1', 'page-title', 'Scenes');
-  const subtitle = createElement('p', 'page-subtitle', 'Scenes that live rent free in my heart');
+  const subtitle = createElement('p', 'page-subtitle', 'Scenes that live rent free in my brain');
   
   appendChildren(header, title, subtitle);
   
