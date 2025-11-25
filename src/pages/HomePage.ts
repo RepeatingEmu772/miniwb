@@ -20,7 +20,7 @@ export function createHomePage(): HTMLElement {
   // Hero image
   const imageWrapper = createElement('div', 'hero-image-wrapper');
   const image = createElement('img', 'hero-image') as HTMLImageElement;
-  image.src = '/image/profile-2.jpg'; 
+  image.src = '/image/profile.jpg'; 
   image.alt = 'Manan Mrig';
   imageWrapper.appendChild(image);
   
@@ -110,7 +110,7 @@ export function createHomePage(): HTMLElement {
   
   // Project box 1
   const projectBox1 = createElement('a', 'project-box') as HTMLAnchorElement;
-  projectBox1.href = '/projects';
+  projectBox1.href = '/projects#1';
   const projectImage1 = createElement('img', 'project-box-image') as HTMLImageElement;
   projectImage1.src = '/image/assistant-overview.png';
   projectImage1.alt = 'AI Assistant Project';
@@ -119,7 +119,7 @@ export function createHomePage(): HTMLElement {
   
   // Project box 2
   const projectBox2 = createElement('a', 'project-box') as HTMLAnchorElement;
-  projectBox2.href = '/projects';
+  projectBox2.href = '/projects#2';
   const projectImage2 = createElement('img', 'project-box-image') as HTMLImageElement;
   projectImage2.src = '/image/canvas-overview.png';
   projectImage2.alt = 'Data Visualization Project';
@@ -130,7 +130,7 @@ export function createHomePage(): HTMLElement {
   
   // View all projects link
   const viewAllLink = createElement('p', 'view-all-link');
-  viewAllLink.innerHTML = 'view the <a href="/projects">projects</a> page for all the projects and in depth descriptions';
+  viewAllLink.innerHTML = 'view the <a href="/projects">projects</a> page for all the projects and in depth  descriptions';
   
   appendChildren(featuredSection, featuredTitle, featuredGrid, viewAllLink);
   

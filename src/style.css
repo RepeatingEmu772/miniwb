@@ -563,7 +563,7 @@ body.theme-gradient {
   display: block;
   height: 3px;
   width: 100%;
-  background: #ffffff;
+  background: var(--color-accent);
   border-radius: 2px;
   transition: all 0.3s ease;
 }
@@ -583,7 +583,6 @@ body.theme-gradient {
 
 /* Responsive design */
 @media (max-width: 768px) {
-  /* Show hamburger menu */
   .hamburger {
     display: block;
   }
@@ -600,15 +599,13 @@ body.theme-gradient {
     top: 0;
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(270deg, var(--grad1), var(--grad2));
-    background-size: 400% 400%;
-    animation: gradientShift 12s ease infinite;
+    background: inherit;
     border-right: none;
     padding: 6rem 2rem 2rem;
     z-index: 25;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
-    backdrop-filter: none;
+    backdrop-filter: blur(20px);
     overflow-y: auto;
     display: flex;
     align-items: center;
@@ -617,6 +614,21 @@ body.theme-gradient {
 
   .navigation.active {
     transform: translateX(0);
+  }
+
+  /* Theme-specific mobile navigation backgrounds */
+  html.theme-light .navigation {
+    background: rgba(245, 245, 245, 0.98);
+  }
+
+  html.theme-dark .navigation {
+    background: rgba(26, 26, 26, 0.98);
+  }
+
+  html.theme-gradient .navigation {
+    background: linear-gradient(270deg, var(--grad1), var(--grad2));
+    background-size: 400% 400%;
+    animation: gradientShift 12s ease infinite;
   }
 
   .nav-list {
@@ -638,9 +650,34 @@ body.theme-gradient {
     color: #ffffff;
   }
 
+  /* Theme-specific link colors for mobile nav */
+  html.theme-light .nav-link {
+    color: #1a1a1a;
+  }
+
+  html.theme-dark .nav-link {
+    color: #ffffff;
+  }
+
+  html.theme-gradient .nav-link {
+    color: #ffffff;
+  }
+
   .nav-home {
     font-size: 2rem;
     margin-bottom: 2rem;
+    color: #ffffff;
+  }
+
+  html.theme-light .nav-home {
+    color: #1a1a1a;
+  }
+
+  html.theme-dark .nav-home {
+    color: #ffffff;
+  }
+
+  html.theme-gradient .nav-home {
     color: #ffffff;
   }
 
@@ -753,13 +790,30 @@ body.theme-gradient {
 .annotation-title {
   font-size: 1.4rem;
   font-weight: 400;
+  margin-top: 1.15rem;
   margin-bottom: 1.15rem;
   color: var(--color-text);
 }
 
 .annotation-subtitle {
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+.future-work-list {
   font-size: 0.9rem;
   color: var(--color-text-light);
+  line-height: 1.6;
+  margin-top: 1rem;
+  padding-left: 1.5rem;
+}
+
+.future-work-item {
+  margin-bottom: 0.75rem;
+}
+
+.future-work-item:last-child {
+  margin-bottom: 0;
 }
 
 .annotation-container {
@@ -798,22 +852,55 @@ body.theme-gradient {
   gap: var(--spacing-sm);
 }
 
-.architecture-block {
-  margin-top: var(--spacing-lg);
+/* Wide image container for 16:9 aspect ratio images */
+.wide-image-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  margin-top: 2rem;
   max-width: 900px;
 }
 
+.wide-image-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.wide-image {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  border: 1px solid var(--border-color-light);
+  display: block;
+}
+
+.image-caption {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  line-height: 1.5;
+  text-align: center;
+  font-style: italic;
+}
+
+.architecture-block {
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  max-width: 1000px;
+}
+
 .architecture-title {
-  font-size: 0.95rem;
+  font-size: 1.4rem;
   font-weight: 400;
-  margin-bottom: 0.15rem;
+  margin-top: 1.15rem;
+  margin-bottom: 1.15rem;
   color: var(--color-text);
 }
 
 .architecture-subtitle {
   font-size: 0.9rem;
   color: var(--color-text-light);
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
 }
 
 .architecture-image-wrapper {
@@ -864,6 +951,7 @@ body.theme-gradient {
   line-height: 1.6;
   margin-bottom: var(--spacing-sm);
   white-space: pre-line;
+  font-size: 1rem;
 }
 
 .tech-list {

@@ -53,7 +53,7 @@ export function createNavigation(
 
   appendChildren(nav, navList);
 
-  // Create hamburger menu button only once
+  // hamburger menu 
   const existingHamburger = document.querySelector('.hamburger');
   if (!existingHamburger) {
     const hamburger = createElement('button', 'hamburger');

@@ -24,13 +24,13 @@ export function createProjectsPage(): HTMLElement {
   const projects = [
     {
       title: 'Mook PAI: Reimagined LLM Application for mobile',
-      description: 'Problem Statement: Most current mobile AI chat apps like ChatGPT or Gemini feel reactive and opaque, often hiding the context stored about the user.\nProposed solution: Design a user-centric AI assistant that proactively helps with day-to-day tasks while being transparent about data usage and memory. The app feels “alive” through agenda panels, conversational summaries, and customizable widgets. It also lets users inspect or delete stored context at any time promoting transparency.',
+      description: 'Problem Statement: Most current LLM chat apps like ChatGPT or Gemini feel reactive and opaque, completely needing the user to actively engage by chat before being of any value and often hiding the context stored about the user.\nProposed solution: Design a user-centric AI assistant that proactively helps with day-to-day tasks while being transparent about data usage and memory. The app feels “alive” through agenda panels, conversational summaries, and customizable widgets. It also lets users inspect or delete stored context at any time promoting transparency.',
       tech: ['Interactive Design', 'HAI', 'SwiftUI' , 'LangChain', 'PGVector']
     },
     {
       title: 'ProPosterous: Human-AI co-creation canvas for creating posters',
-      description: 'A productivity app built with modern web technologies.',
-      tech: ['React', 'Node.js', 'MongoDB']
+      description: 'Problem Statement: Diffusion models today often mess up on text when asked for an infographic. In addition, their is no way to edit the text without prompting for a new image which in itself is a gamble because the new image can make the text even worse. This makes current diffusion models unsuitable to create infographics such as Posters .\nProposed Solution: Create a collaborative canvas where users and diffusion models work together in real-time. The system eases the heavy lifting from users by making backgrounds and animations while preserving user autonomy, allowing seamless iteration between human creativity and AI capabilities. The canvas allows users to request specific edits to text elements by chat or gives them tools to just do it themselves, including moving the text around canvas',
+      tech: ['Interactive Design', 'Next.js', 'React', 'Typescript', 'Python', 'Seeddream', 'Qwen-Visual Language Model']
     },
     {
       title: 'Creative Coding Experiments',
@@ -95,7 +95,7 @@ export function createProjectsPage(): HTMLElement {
       // First annotated image
       const firstItem = createElement('div', 'annotation-item');
       const baseImage = createElement('img', 'annotation-image') as HTMLImageElement;
-      baseImage.src = '/image/assistant-home.png';
+      baseImage.src = '/image/p1/assistant-home.png';
       baseImage.alt = 'Project screenshot with annotations';
       baseImage.width = 360;
       baseImage.height = 760;
@@ -120,7 +120,7 @@ export function createProjectsPage(): HTMLElement {
       const secondItem = createElement('div', 'annotation-item');
       const secondImage = createElement('img', 'annotation-image') as HTMLImageElement;
       // TODO: update this path to your second screenshot
-      secondImage.src = '/image/assistant-context.png';
+      secondImage.src = '/image/p1/assistant-context.png';
       secondImage.alt = 'Context view screenshot';
       secondImage.width = 360;
       secondImage.height = 760;
@@ -135,7 +135,7 @@ export function createProjectsPage(): HTMLElement {
 
       const thirdItem = createElement('div', 'annotation-item');
       const thirdImage = createElement('img', 'annotation-image') as HTMLImageElement;
-      thirdImage.src = '/image/assistant-agenda.png';
+      thirdImage.src = '/image/p1/assistant-agenda.png';
       thirdImage.alt = 'Agenda view screenshot';
       thirdImage.width = 360;
       thirdImage.height = 760;
@@ -150,7 +150,7 @@ export function createProjectsPage(): HTMLElement {
 
       const fourthItem = createElement('div', 'annotation-item');
       const fourthImage = createElement('img', 'annotation-image') as HTMLImageElement;
-      fourthImage.src = '/image/assistant-news.png';
+      fourthImage.src = '/image/p1/assistant-news.png';
       fourthImage.alt = 'Settings view screenshot';
       fourthImage.width = 360;
       fourthImage.height = 760;
@@ -167,7 +167,7 @@ export function createProjectsPage(): HTMLElement {
       const fifthItem = createElement('div', 'annotation-item');
       const fifthImage = createElement('img', 'annotation-image') as HTMLImageElement;
       // TODO: update this path to your fifth screenshot
-      fifthImage.src = '/image/assistant-share.png';
+      fifthImage.src = '/image/p1/assistant-share.png';
       fifthImage.alt = 'Additional view screenshot';
       fifthImage.width = 360;
       fifthImage.height = 760;
@@ -184,7 +184,7 @@ export function createProjectsPage(): HTMLElement {
       const sixthItem = createElement('div', 'annotation-item');
       const sixthImage = createElement('img', 'annotation-image') as HTMLImageElement;
       // TODO: update this path to your sixth screenshot
-      sixthImage.src = '/image/assistant-summary.png';
+      sixthImage.src = '/image/p1/assistant-summary.png';
       sixthImage.alt = 'Additional view screenshot';
       sixthImage.width = 360;
       sixthImage.height = 760;
@@ -218,7 +218,7 @@ export function createProjectsPage(): HTMLElement {
 
       const architectureTitle = createElement(
         'h4',
-        'architecture-title',
+        'annotation-title',
         'System architecture'
       );
       const architectureSubtitle = createElement(
@@ -235,7 +235,7 @@ export function createProjectsPage(): HTMLElement {
         'img',
         'architecture-image'
       ) as HTMLImageElement;
-      architectureImage.src = '/image/assistant-architecture-3.png';
+      architectureImage.src = '/image/p1/assistant-architecture-3.png';
       architectureImage.alt =
         'System architecture diagram for the personal AI assistant';
       architectureImageWrapper.appendChild(architectureImage);
@@ -250,17 +250,143 @@ export function createProjectsPage(): HTMLElement {
 
       const annotationBlock2 = createElement('div', 'annotation-block');
 
-
       const annotationSubtitle2 = createElement(
         'p',
         'annotation-subtitle',
         '**Note: The external app functionality shown in the 5th screenshot is simulated for demonstration purposes only and is not part of the actual app implementation.**'
       );
 
+      const futureWorkTitle = createElement(
+        'h4',
+        'annotation-title',
+        'Future Work'
+      );
+      
+      const futureWorkList = createElement('ol', 'future-work-list');
+      
+      const futureItem1 = createElement('li', 'future-work-item', 
+        'Deeper integration with third-party apps for seamless workflow automation'
+      );
+      const futureItem2 = createElement('li', 'future-work-item',
+        'Advanced contextual awareness through sensor data and location-based insights'
+      );
+      const futureItem3 = createElement('li', 'future-work-item',
+        'Improved personalization algorithms to better predict user needs and preferences'
+      );
+      
+      appendChildren(futureWorkList, futureItem1, futureItem2, futureItem3);
+
       appendChildren(
         annotationBlock2,
-        annotationSubtitle2
+        annotationSubtitle2,
+        futureWorkTitle,
+        futureWorkList
       );
+      projectCard.appendChild(annotationBlock2);
+    }
+
+    // Project 2 - ProPosterous with wide-format images
+    if (idx === 1) {
+      const annotationBlock = createElement('div', 'annotation-block');
+
+      const annotationTitle = createElement(
+        'h4',
+        'annotation-title',
+        'Visual Walkthrough'
+      );
+      const annotationSubtitle = createElement(
+        'p',
+        'annotation-subtitle',
+        'See how users and AI collaborate on the canvas to create stunning poster designs.'
+      );
+
+      const wideImageContainer = createElement('div', 'wide-image-container');
+
+      // First wide image
+      const wideImage1 = createElement('div', 'wide-image-item');
+      const image1 = createElement('img', 'wide-image') as HTMLImageElement;
+      image1.src = '/image/p2/arcade-1.png';
+      image1.alt = 'Canvas interface overview';
+      const caption1 = createElement('p', 'image-caption', 'Interactive canvas with Diffusion model powered design and real-time collaboration. Freely edit and move around text generated by LLM.');
+      appendChildren(wideImage1, image1, caption1);
+
+      // Second wide image
+      const wideImage2 = createElement('div', 'wide-image-item');
+      const image2 = createElement('img', 'wide-image') as HTMLImageElement;
+      image2.src = '/image/p2/cake-complete.png';
+      image2.alt = 'AI suggestion panel';
+      const caption2 = createElement('p', 'image-caption', 'Iteratively refine designs by prompting the AI for specific edits while maintaining full control over layout and text placement');
+      appendChildren(wideImage2, image2, caption2);
+
+      // Third wide image
+      const wideImage3 = createElement('div', 'wide-image-item');
+      const image3 = createElement('img', 'wide-image') as HTMLImageElement;
+      image3.src = '/image/p2/wine-1.png';
+      image3.alt = 'Final poster design';
+      const caption3 = createElement('p', 'image-caption', 'Wanna do it yourself? Freely add text. Seamless iteration between human creativity and AI assistance produces polished results');
+      appendChildren(wideImage3, image3, caption3);
+
+      appendChildren(wideImageContainer, wideImage1, wideImage2, wideImage3);
+      appendChildren(annotationBlock, annotationTitle, annotationSubtitle, wideImageContainer);
+      projectCard.appendChild(annotationBlock);
+
+      // System Architecture for Project 2
+      const architectureBlock = createElement('div', 'architecture-block');
+
+      const architectureTitle = createElement(
+        'h4',
+        'architecture-title',
+        'System Architecture'
+      );
+      const architectureSubtitle = createElement(
+        'p',
+        'architecture-subtitle',
+        'High-level diagram showing how the TLDraw (Canvas) interacts with Zustand, API router and Runpod Inference.'
+      );
+
+      const architectureImageWrapper = createElement(
+        'div',
+        'architecture-image-wrapper'
+      );
+      const architectureImage = createElement(
+        'img',
+        'architecture-image'
+      ) as HTMLImageElement;
+      architectureImage.src = '/image/p2/poster-arch.png';
+      architectureImage.alt = 'System architecture diagram for ProPosterous collaborative canvas';
+      architectureImageWrapper.appendChild(architectureImage);
+
+      appendChildren(
+        architectureBlock,
+        architectureTitle,
+        architectureSubtitle,
+        architectureImageWrapper
+      );
+      projectCard.appendChild(architectureBlock);
+
+      // Future Work for Project 2
+      const annotationBlock2 = createElement('div', 'annotation-block');
+
+      const futureWorkTitle = createElement(
+        'h4',
+        'annotation-title',
+        'Future Work'
+      );
+      
+      const futureWorkList = createElement('ol', 'future-work-list');
+      
+      const futureItem1 = createElement('li', 'future-work-item', 
+        'Multi-user real-time collaboration with live cursors and presence indicators'
+      );
+      const futureItem2 = createElement('li', 'future-work-item',
+        'Advanced AI style transfer and design system recommendations'
+      );
+      const futureItem3 = createElement('li', 'future-work-item',
+        'Export capabilities for various formats and integration with design tools'
+      );
+      
+      appendChildren(futureWorkList, futureItem1, futureItem2, futureItem3);
+      appendChildren(annotationBlock2, futureWorkTitle, futureWorkList);
       projectCard.appendChild(annotationBlock2);
     }
 
@@ -313,8 +439,20 @@ export function createProjectsPage(): HTMLElement {
       applyFilter(selected);
     });
 
-    // initialize with index 1 active
-    applyFilter(1);
+    // Check for hash in URL to show specific project
+    const hash = window.location.hash;
+    const projectNumber = hash ? parseInt(hash.substring(1), 10) : 1;
+    const initialProject = (!isNaN(projectNumber) && projectNumber >= 1 && projectNumber <= numbers.length) ? projectNumber : 1;
+    
+    applyFilter(initialProject);
+    
+    // Scroll to the selected project card
+    setTimeout(() => {
+      const activeCard = page.querySelector(`[data-index="${initialProject}"]`);
+      if (activeCard) {
+        activeCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
 
     // arrow navigation logic
     const clamp = (v: number) => Math.max(1, Math.min(numbers.length, v));

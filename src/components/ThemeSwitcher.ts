@@ -50,8 +50,8 @@ export function createThemeSwitcher(): HTMLElement {
     });
   });
   
-  // Load saved theme or default to gradient
-  const savedTheme = localStorage.getItem('preferred-theme') || 'gradient';
+  // Load saved theme or default to dark
+  const savedTheme = localStorage.getItem('preferred-theme') || 'dark';
   applyTheme(savedTheme);
   
   return themeSwitcher;
