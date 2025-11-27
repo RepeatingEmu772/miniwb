@@ -83,7 +83,7 @@ export function createProjectsPage(): HTMLElement {
       const annotationSubtitle = createElement(
         'p',
         'annotation-subtitle',
-        'For full code of all three submodules, see the GitHub repositories. Scroll down for the architecture diagram.'
+        'Key screens showcasing the app\'s proactive assistance, transparency, and customizable interface.'
       );
 
       const annotationContainer = createElement('div', 'annotation-container');
@@ -234,11 +234,15 @@ export function createProjectsPage(): HTMLElement {
         'System architecture diagram for the personal AI assistant';
       architectureImageWrapper.appendChild(architectureImage);
 
+      const architectureNote = createElement('p', 'architecture-note');
+      architectureNote.innerHTML = 'For full code of all three submodules, see the GitHub repositories: <a href="https://github.com/RepeatingEmu772/mook-pai" target="_blank" rel="noopener noreferrer">frontend</a>, <a href="https://github.com/RepeatingEmu772/pai-service" target="_blank" rel="noopener noreferrer">backend</a>, <a href="https://github.com/RepeatingEmu772/runpod" target="_blank" rel="noopener noreferrer">inference</a>';
+
       appendChildren(
         architectureBlock,
         architectureTitle,
         architectureSubtitle,
-        architectureImageWrapper
+        architectureImageWrapper,
+        architectureNote
       );
       projectCard.appendChild(architectureBlock);
 

@@ -35,6 +35,14 @@ html.theme-gradient {
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Agraham';
+  src: url('/font/Agraham.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --color-text: #2c2c2c;
   --color-text-light: #666666;
@@ -81,9 +89,8 @@ font-family: var(--font-family);
   line-height: var(--line-height);
   --color-text: #ffffff;
   --color-text-light: rgba(255,255,255,0.85);
-  --color-bg: #00000000; /* background is gradient, keep transparent */
+  --color-bg: #00000000;
   color: var(--color-text);
-  /* animated gradient background */
   background: linear-gradient(270deg, var(--grad1), var(--grad2));
   background-size: 400% 400%;
   animation: gradientShift 12s ease infinite;
@@ -144,7 +151,6 @@ body.theme-gradient {
 #app {
   min-height: 100vh;
   display: grid;
-  /* use a single column layout since navigation will be pinned to the viewport left */
   grid-template-columns: 1fr;
   max-width: var(--max-width);
   margin: 0 auto;
@@ -205,11 +211,12 @@ body.theme-gradient {
 .nav-home {
   font-weight: 400;
   color: var(--color-text);
+  font-family: 'Agraham', var(--font-family);
 }
 
 /* Larger home link on desktop for emphasis */
 .nav-home {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 .nav-text {
@@ -245,8 +252,8 @@ body.theme-gradient {
 
 .hero-image-wrapper {
   flex-shrink: 0;
-  width: 400px;
-  height: 400px;
+  width: 450px;
+  height: 450px;
   border-radius: 16px;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.05);
@@ -264,15 +271,22 @@ body.theme-gradient {
   font-size: var(--font-md);
   color: var(--color-text-light);
   font-weight: 300;
-  margin-bottom: var(--spacing-2xs);
+  margin-bottom: var(--spacing-xs);
 }
 
 .hero-title {
   font-size: var(--font-2xl);
+  font-family: 'Agraham', var(--font-family);
   font-weight: 300;
   letter-spacing: -0.02em;
   margin-bottom: var(--spacing-sm);
   color: var(--color-accent);
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
 }
 
 .hero-subtitle {
@@ -283,7 +297,7 @@ body.theme-gradient {
 }
 
 .hero-bio {
-  font-size: var(--font-sm);
+  font-size: 1.125rem;
   color: var(--color-text);
   max-width: 600px;
   line-height: 1.7;
@@ -292,7 +306,7 @@ body.theme-gradient {
 /* Home page sections */
 .home-section {
   margin-top: var(--spacing-xl);
-  padding-top: var(--spacing-lg);
+  padding-top: var(--spacing-xl);
   border-top: 1px solid var(--border-color);
 }
 
@@ -386,7 +400,7 @@ body.theme-gradient {
 
 .project-box {
   display: block;
-  padding: var(--spacing-lg);
+  padding: var(--spacing-xl);
   background: var(--card-bg-1);
   border-radius: 16px;
   border: 1px solid var(--border-color-light);
@@ -399,8 +413,8 @@ body.theme-gradient {
 .project-box:hover {
   background: var(--card-bg-elevated);
   border-color: var(--color-accent);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(188, 231, 60, 0.1);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(188, 231, 60, 0.15);
 }
 
 .project-box:focus-visible {
@@ -453,8 +467,8 @@ body.theme-gradient {
   display: flex;
   gap: 1.5rem;
   align-items: center;
-  margin-top: 1rem;
-  padding-top: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
 }
 
 .social-icon {
@@ -463,7 +477,7 @@ body.theme-gradient {
   justify-content: center;
   color: var(--color-text-light);
   transition: all 0.3s ease;
-  opacity: 0.8;
+  opacity: 0.9;
   text-decoration: none;
 }
 
@@ -475,13 +489,13 @@ body.theme-gradient {
 
 .social-icon:hover {
   opacity: 1;
-  transform: translateY(-2px);
-  color: var(--accent);
+  transform: translateY(-3px);
+  color: var(--color-accent);
 }
 
 .social-icon svg {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
 }
 
 @media (max-width: 768px) {
@@ -997,6 +1011,30 @@ body.theme-gradient {
   font-size: 0.9rem;
   color: var(--color-text-light);
   margin-bottom: var(--spacing-md);
+}
+
+.architecture-note {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  margin-top: var(--spacing-lg);
+  line-height: 1.6;
+}
+
+.architecture-note a {
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-accent);
+  transition: opacity 0.2s ease;
+}
+
+.architecture-note a:hover {
+  opacity: 0.8;
+}
+
+.architecture-note a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .architecture-image-wrapper {
