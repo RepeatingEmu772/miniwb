@@ -136,7 +136,7 @@ export function createHomePage(): HTMLElement {
   const projectBoxTitle2 = createElement('h3', 'project-box-title', 'ProPosterous: Human-AI co-creation canvas for creating posters');
   
   const techList2 = createElement('div', 'tech-list');
-  const tech2Tags = ['Interactive Design', 'Next.js', 'React', 'Typescript', 'Python', 'Seeddream', 'Qwen-Visual Language Model'];
+  const tech2Tags = ['Interactive Design', 'Next.js', 'React', 'Typescript', 'Python', 'seedream', 'Qwen-Visual Language Model'];
   tech2Tags.forEach(tech => {
     const techTag = createElement('span', 'tech-tag', tech);
     techList2.appendChild(techTag);

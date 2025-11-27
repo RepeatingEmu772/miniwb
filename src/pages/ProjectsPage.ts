@@ -27,7 +27,7 @@ export function createProjectsPage(): HTMLElement {
     {
       title: 'ProPosterous: Human-AI co-creation canvas for creating posters',
       description: 'Problem Statement: Diffusion models today often mess up on text when asked for an infographic. In addition, their is no way to edit the text without prompting for a new image which in itself is a gamble because the new image can make the text even worse. This makes current diffusion models unsuitable to create infographics such as Posters .\nProposed Solution: Create a collaborative canvas where users and diffusion models work together in real-time. The system eases the heavy lifting from users by making backgrounds and animations while preserving user autonomy, allowing seamless iteration between human creativity and AI capabilities. The canvas allows users to request specific edits to text elements by chat or gives them tools to just do it themselves, including moving the text around canvas',
-      tech: ['Interactive Design', 'Next.js', 'React', 'Typescript', 'Python', 'Seeddream', 'Qwen-Visual Language Model']
+      tech: ['Interactive Design', 'Next.js', 'React', 'Typescript', 'Python', 'Seedream', 'Qwen-Visual Language Model']
     },
     {
       title: 'Creative Coding Experiments',
