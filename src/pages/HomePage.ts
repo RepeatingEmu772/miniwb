@@ -26,23 +26,6 @@ export function createHomePage(): HTMLElement {
   
   appendChildren(hero, heroContent, imageWrapper);
   
-  // Education section
-  const educationSection = createElement('section', 'home-section');
-  const educationTitle = createElement('h2', 'section-title', 'Education');
-  const educationContent = createElement('div', 'section-content');
-  
-  const education = createElement('div', 'education-item');
-  const schoolName = createElement('h3', 'item-title', 'University of Minnesota, Twin Cities');
-  const degree = createElement('p', 'item-subtitle', 'B.S. in Computer Science');
-  const eduYear = createElement('span', 'item-year', 'September 2020 - May 2024');
-  const eduDesc = createElement('p', 'item-description', 
-    'Focused on Artificial Intelligence, Machine Learning, Software Engineering and Systems Design. Dean\'s List honoree.'
-  );
-  
-  appendChildren(education, schoolName, degree, eduYear, eduDesc);
-  appendChildren(educationContent, education);
-  appendChildren(educationSection, educationTitle, educationContent);
-  
   // Experience section
   const experienceSection = createElement('section', 'home-section');
   const experienceTitle = createElement('h2', 'section-title', 'Experience');
@@ -74,34 +57,6 @@ export function createHomePage(): HTMLElement {
   // Resume link
   const resumeLink = createElement('p', 'resume-link');
   resumeLink.innerHTML = 'view my <a href="/resume.pdf" target="_blank">resume</a> for all experiences and in depth descriptions';
-  
-  // Continuous Learning section
-  const learningSection = createElement('section', 'home-section');
-  const learningTitle = createElement('h2', 'section-title', 'Continuous Learning');
-  const learningContent = createElement('div', 'section-content');
-  
-  // Learning item 1
-  const learn1 = createElement('div', 'learning-item');
-  const course1 = createElement('h3', 'item-title', 'Interaction Design Specialization');
-  const platform1 = createElement('p', 'item-subtitle', 'Coursera - UC San Diego');
-  const learnYear1 = createElement('span', 'item-year', '2025');
-  const learnDesc1 = createElement('p', 'item-description', 
-    'Comprehensive program covering user-centered design, prototyping, and evaluation methods. Built practical projects to enhance human-AI collaboration.'
-  );
-  appendChildren(learn1, course1, platform1, learnYear1, learnDesc1);
-  
-  // Learning item 2
-  const learn2 = createElement('div', 'learning-item');
-  const course2 = createElement('h3', 'item-title', 'Human-Centered AI');
-  const platform2 = createElement('p', 'item-subtitle', 'Coursera - Clemson University');
-  const learnYear2 = createElement('span', 'item-year', '2025');
-  const learnDesc2 = createElement('p', 'item-description', 
-    ' Explored principles of Human-Centered AI, focusing on creating AI systems aligned with human values, behavior, and responsible design.'
-  );
-  appendChildren(learn2, course2, platform2, learnYear2, learnDesc2);
-  
-  appendChildren(learningContent, learn1, learn2);
-  appendChildren(learningSection, learningTitle, learningContent);
   
   // Featured Projects section
   const featuredSection = createElement('section', 'home-section');
@@ -152,7 +107,42 @@ export function createHomePage(): HTMLElement {
   
   appendChildren(featuredSection, featuredTitle, featuredGrid, viewAllLink);
   
-  appendChildren(page, hero, featuredSection, educationSection, experienceSection, resumeLink, learningSection);
+  // Education & Continuous Learning section (combined)
+  const educationSection = createElement('section', 'home-section');
+  const educationTitle = createElement('h2', 'section-title', 'Education & Continuous Learning');
+  const educationContent = createElement('div', 'section-content');
+  
+  const education = createElement('div', 'education-item');
+  const schoolName = createElement('h3', 'item-title', 'University of Minnesota, Twin Cities');
+  const degree = createElement('p', 'item-subtitle', 'B.S. in Computer Science');
+  const eduYear = createElement('span', 'item-year', 'September 2020 - May 2024');
+  const eduDesc = createElement('p', 'item-description', 
+    'Focused on Artificial Intelligence, Machine Learning, Software Engineering and Systems Design. Dean\'s List honoree.'
+  );
+  appendChildren(education, schoolName, degree, eduYear, eduDesc);
+  
+  const learn1 = createElement('div', 'learning-item');
+  const course1 = createElement('h3', 'item-title', 'Interaction Design Specialization');
+  const platform1 = createElement('p', 'item-subtitle', 'Coursera - UC San Diego');
+  const learnYear1 = createElement('span', 'item-year', '2025');
+  const learnDesc1 = createElement('p', 'item-description', 
+    'Comprehensive program covering user-centered design, prototyping, and evaluation methods. Built practical projects to enhance human-AI collaboration.'
+  );
+  appendChildren(learn1, course1, platform1, learnYear1, learnDesc1);
+  
+  const learn2 = createElement('div', 'learning-item');
+  const course2 = createElement('h3', 'item-title', 'Human-Centered AI');
+  const platform2 = createElement('p', 'item-subtitle', 'Coursera - Clemson University');
+  const learnYear2 = createElement('span', 'item-year', '2025');
+  const learnDesc2 = createElement('p', 'item-description', 
+    ' Explored principles of Human-Centered AI, focusing on creating AI systems aligned with human values, behavior, and responsible design.'
+  );
+  appendChildren(learn2, course2, platform2, learnYear2, learnDesc2);
+  
+  appendChildren(educationContent, education, learn1, learn2);
+  appendChildren(educationSection, educationTitle, educationContent);
+  
+  appendChildren(page, hero, featuredSection, educationSection, experienceSection, resumeLink);
   
   return page;
 }
