@@ -114,8 +114,17 @@ export function createHomePage(): HTMLElement {
   const projectImage1 = createElement('img', 'project-box-image') as HTMLImageElement;
   projectImage1.src = '/image/assistant-overview.png';
   projectImage1.alt = 'AI Assistant Project';
+  
   const projectBoxTitle1 = createElement('h3', 'project-box-title', 'Mook PAI: Reimagined LLM Application for mobile');
-  appendChildren(projectBox1, projectImage1, projectBoxTitle1);
+  
+  const techList1 = createElement('div', 'tech-list');
+  const tech1Tags = ['Interactive Design', 'HAI', 'SwiftUI', 'LangChain', 'PGVector'];
+  tech1Tags.forEach(tech => {
+    const techTag = createElement('span', 'tech-tag', tech);
+    techList1.appendChild(techTag);
+  });
+  
+  appendChildren(projectBox1, projectImage1, projectBoxTitle1, techList1);
   
   // Project box 2
   const projectBox2 = createElement('a', 'project-box') as HTMLAnchorElement;
@@ -123,8 +132,17 @@ export function createHomePage(): HTMLElement {
   const projectImage2 = createElement('img', 'project-box-image') as HTMLImageElement;
   projectImage2.src = '/image/canvas-overview.png';
   projectImage2.alt = 'Data Visualization Project';
+  
   const projectBoxTitle2 = createElement('h3', 'project-box-title', 'ProPosterous: Human-AI co-creation canvas for creating posters');
-  appendChildren(projectBox2, projectImage2, projectBoxTitle2);
+  
+  const techList2 = createElement('div', 'tech-list');
+  const tech2Tags = ['Interactive Design', 'Next.js', 'React', 'Typescript', 'Python', 'Seeddream', 'Qwen-Visual Language Model'];
+  tech2Tags.forEach(tech => {
+    const techTag = createElement('span', 'tech-tag', tech);
+    techList2.appendChild(techTag);
+  });
+  
+  appendChildren(projectBox2, projectImage2, projectBoxTitle2, techList2);
   
   appendChildren(featuredGrid, projectBox1, projectBox2);
   
@@ -134,7 +152,7 @@ export function createHomePage(): HTMLElement {
   
   appendChildren(featuredSection, featuredTitle, featuredGrid, viewAllLink);
   
-  appendChildren(page, hero, educationSection, experienceSection, resumeLink, learningSection, featuredSection);
+  appendChildren(page, hero, featuredSection, educationSection, experienceSection, resumeLink, learningSection);
   
   return page;
 }

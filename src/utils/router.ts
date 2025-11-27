@@ -66,6 +66,9 @@ export class Router {
       this.mainContent.innerHTML = '';
       this.mainContent.appendChild(content);
       
+      // Scroll to top of page
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
       // Update navigation active state
       const links = document.querySelectorAll('.nav-link');
       links.forEach((link) => {

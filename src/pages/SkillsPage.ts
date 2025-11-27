@@ -23,8 +23,8 @@ export function createSkillsPage(): HTMLElement {
         { name: 'Kotlin', level: 75 },
         { name: 'JavaScript', level: 75 },
         { name: 'TypeScript', level: 75 },
-        { name: 'SQL', level: 80 },
-        { name: 'BASH', level: 70 },
+        { name: 'SQL', level: 70 },
+        { name: 'BASH', level: 60 },
         { name: 'Assembly x86-64', level: 40 },
         { name: 'Verilog', level: 30 }
       ]
@@ -32,38 +32,38 @@ export function createSkillsPage(): HTMLElement {
     {
       category: 'Frameworks',
       skills: [
-        { name: 'TensorFlow', level: 85 },
-        { name: 'NumPy', level: 90 },
-        { name: 'Matplotlib', level: 85 },
+        { name: 'TensorFlow', level: 60 },
+        { name: 'NumPy', level: 60 },
+        { name: 'Matplotlib', level: 70 },
         { name: 'Django', level: 80 },
         { name: 'Flask', level: 85 },
         { name: 'Spring Boot', level: 85 },
         { name: 'Micronaut', level: 80 },
-        { name: 'TCP/IP', level: 75 },
-        { name: 'Java RMI', level: 70 }
+        { name: 'TCP/IP', level: 65 },
+        { name: 'Java RMI', level: 55 }
       ]
     },
     {
       category: 'Developer Tools',
       skills: [
         { name: 'Git', level: 90 },
-        { name: 'Docker', level: 85 },
+        { name: 'Docker', level: 80 },
         { name: 'PostgreSQL', level: 80 },
         { name: 'LaTeX', level: 75 },
         { name: 'Jira', level: 80 },
-        { name: 'Hadoop/HDFS', level: 70 },
+        { name: 'Hadoop/HDFS', level: 60 },
         { name: 'Hive', level: 70 },
-        { name: 'Kafka', level: 75 }
+        { name: 'Kafka', level: 60 }
       ]
     },
     {
       category: 'Platforms',
       skills: [
         { name: 'Linux', level: 90 },
-        { name: 'MacOS', level: 85 },
-        { name: 'Windows', level: 80 },
-        { name: 'Arduino', level: 75 },
-        { name: 'FPGA', level: 65 }
+        { name: 'MacOS', level: 90 },
+        { name: 'Windows', level: 90 },
+        { name: 'Arduino', level: 70 },
+        { name: 'FPGA', level: 40 }
       ]
     }
   ];

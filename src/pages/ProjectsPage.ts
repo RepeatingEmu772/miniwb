@@ -5,7 +5,6 @@ export function createProjectsPage(): HTMLElement {
   
   const header = createElement('section', 'page-header');
   const title = createElement('h1', 'page-title', 'Projects');
-  // const subtitle = createElement('p', 'page-subtitle', 'A selection of work spanning web development, mobile apps, and creative coding');
   
   appendChildren(header, title);
   
@@ -16,11 +15,9 @@ export function createProjectsPage(): HTMLElement {
     const numberItem = createElement('span', 'number-item', num.toString());
     numberList.appendChild(numberItem);
   });
-  // initially append number list after content (we'll append below)
   
   const content = createElement('section', 'page-content');
   
-  // Project items - you can expand these
   const projects = [
     {
       title: 'Mook PAI: Reimagined LLM Application for mobile',
@@ -50,7 +47,6 @@ export function createProjectsPage(): HTMLElement {
     }
   ];
   
-  // Create project cards with a data-index so numbers can map to them
   projects.forEach((project, idx) => {
     const projectCard = createElement('div', 'project-card');
     projectCard.setAttribute('data-index', String(idx + 1));
@@ -119,7 +115,7 @@ export function createProjectsPage(): HTMLElement {
       // Second annotated image to the right
       const secondItem = createElement('div', 'annotation-item');
       const secondImage = createElement('img', 'annotation-image') as HTMLImageElement;
-      // TODO: update this path to your second screenshot
+
       secondImage.src = '/image/p1/assistant-context.png';
       secondImage.alt = 'Context view screenshot';
       secondImage.width = 360;
@@ -166,7 +162,6 @@ export function createProjectsPage(): HTMLElement {
       // Fifth annotated image (below the first & third column)
       const fifthItem = createElement('div', 'annotation-item');
       const fifthImage = createElement('img', 'annotation-image') as HTMLImageElement;
-      // TODO: update this path to your fifth screenshot
       fifthImage.src = '/image/p1/assistant-share.png';
       fifthImage.alt = 'Additional view screenshot';
       fifthImage.width = 360;
@@ -183,7 +178,6 @@ export function createProjectsPage(): HTMLElement {
       // Fifth annotated image (below the first & third column)
       const sixthItem = createElement('div', 'annotation-item');
       const sixthImage = createElement('img', 'annotation-image') as HTMLImageElement;
-      // TODO: update this path to your sixth screenshot
       sixthImage.src = '/image/p1/assistant-summary.png';
       sixthImage.alt = 'Additional view screenshot';
       sixthImage.width = 360;
@@ -429,7 +423,6 @@ export function createProjectsPage(): HTMLElement {
   };
 
   if (numberItems.length > 0) {
-    // listen on the numberList (moved below content) so clicks are captured
     numberList.addEventListener('click', (e) => {
       const target = e.target as HTMLElement;
       if (!target || !target.classList.contains('number-item')) return;
