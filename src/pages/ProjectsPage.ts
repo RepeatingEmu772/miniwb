@@ -10,7 +10,7 @@ export function createProjectsPage(): HTMLElement {
   
   // Add number list under header (moved from home page)
   const numberList = createElement('div', 'number-list');
-  const numbers = [1,2,3,4,5];
+  const numbers = [1,2]; // Only 2 projects now
   numbers.forEach(num => {
     const numberItem = createElement('span', 'number-item', num.toString());
     numberList.appendChild(numberItem);
@@ -28,23 +28,24 @@ export function createProjectsPage(): HTMLElement {
       title: 'ProPosterous: Human-AI co-creation canvas for creating posters',
       description: 'Problem Statement: Diffusion models today often mess up on text when asked for an infographic. In addition, their is no way to edit the text without prompting for a new image which in itself is a gamble because the new image can make the text even worse. This makes current diffusion models unsuitable to create infographics such as Posters .\nProposed Solution: Create a collaborative canvas where users and diffusion models work together in real-time. The system eases the heavy lifting from users by making backgrounds and animations while preserving user autonomy, allowing seamless iteration between human creativity and AI capabilities. The canvas allows users to request specific edits to text elements by chat or gives them tools to just do it themselves, including moving the text around canvas',
       tech: ['Interactive Design', 'Next.js', 'React', 'Typescript', 'Python', 'Seedream', 'Qwen-Visual Language Model']
-    },
-    {
-      title: 'Creative Coding Experiments',
-      description: 'Interactive visualizations and generative art pieces.',
-      tech: ['p5.js', 'WebGL', 'Canvas API']
     }
-    ,
-    {
-      title: 'Design System Kit',
-      description: 'A reusable design system for consistent UI across products.',
-      tech: ['Figma', 'Tokens', 'CSS']
-    },
-    {
-      title: 'Mobile Habit App',
-      description: 'A simple habit tracking app focused on minimal UX.',
-      tech: ['React Native', 'TypeScript']
-    }
+    // ,
+    // {
+    //   title: 'Creative Coding Experiments',
+    //   description: 'Interactive visualizations and generative art pieces.',
+    //   tech: ['p5.js', 'WebGL', 'Canvas API']
+    // }
+    // ,
+    // {
+    //   title: 'Design System Kit',
+    //   description: 'A reusable design system for consistent UI across products.',
+    //   tech: ['Figma', 'Tokens', 'CSS']
+    // },
+    // {
+    //   title: 'Mobile Habit App',
+    //   description: 'A simple habit tracking app focused on minimal UX.',
+    //   tech: ['React Native', 'TypeScript']
+    // }
   ];
   
   projects.forEach((project, idx) => {
