@@ -521,6 +521,17 @@ body.theme-gradient {
   padding: var(--spacing-lg) 0;
   border-top: 1px solid var(--border-color);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer-text {
