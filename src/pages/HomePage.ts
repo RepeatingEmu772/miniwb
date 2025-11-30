@@ -56,7 +56,7 @@ export function createHomePage(): HTMLElement {
   
   // Resume link
   const resumeLink = createElement('p', 'resume-link');
-  resumeLink.innerHTML = 'view my <a href="/resume.pdf" target="_blank">resume</a> for all experiences and in depth descriptions';
+  resumeLink.innerHTML = 'view my <a href="/cv.pdf" target="_blank">cv</a> for all experiences and in depth descriptions';
   
   // Featured Projects section
   const featuredSection = createElement('section', 'home-section');
