@@ -360,11 +360,15 @@ export function createProjectsPage(): HTMLElement {
       architectureImage.alt = 'System architecture diagram for ProPosterous collaborative canvas';
       architectureImageWrapper.appendChild(architectureImage);
 
+      const architectureNote = createElement('p', 'architecture-note');
+      architectureNote.innerHTML = 'For full code, see the GitHub repositories: <a href="https://github.com/RepeatingEmu772/poster-ui" target="_blank" rel="noopener noreferrer">web app</a>, <a href="https://github.com/RepeatingEmu772/poster-runpod" target="_blank" rel="noopener noreferrer">inference</a>';
+
       appendChildren(
         architectureBlock,
         architectureTitle,
         architectureSubtitle,
-        architectureImageWrapper
+        architectureImageWrapper,
+        architectureNote
       );
       projectCard.appendChild(architectureBlock);
 
