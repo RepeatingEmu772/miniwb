@@ -387,10 +387,10 @@ export function createProjectsPage(): HTMLElement {
         'Autonomy to switch between using different diffusion models for varied artistic styles or even use custom models by uploading safetensors or huggingface links.'
       );
       const futureItem2 = createElement('li', 'future-work-item',
-        'Ability to generate and edit numerous poster designs and styles together in one canvas session'
+        'Ability to generate and edit numerous poster designs and styles together in through a single prompt'
       );
       const futureItem3 = createElement('li', 'future-work-item',
-        'Multi-user collaboration where multiple users can work on the same canvas in real-time'
+        'Multi-user collaboration where multiple users can work on the same canvas in real-time.'
       );
       
       appendChildren(futureWorkList, futureItem1, futureItem2, futureItem3);
