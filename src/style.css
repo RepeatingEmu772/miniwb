@@ -949,11 +949,18 @@ body.theme-gradient {
   color: var(--color-text);
 }
 
+.future-work-intro {
+  font-size: 1rem;
+  color: var(--color-text);
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
 .future-work-list {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--color-text-light);
   line-height: 1.6;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   padding-left: 1.5rem;
 }
 

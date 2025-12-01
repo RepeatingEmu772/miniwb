@@ -261,16 +261,20 @@ export function createProjectsPage(): HTMLElement {
         'Future Work'
       );
       
+      const futureWorkIntro = createElement('p', 'future-work-intro',
+        'Future improvements that can make this project better:'
+      );
+      
       const futureWorkList = createElement('ol', 'future-work-list');
       
       const futureItem1 = createElement('li', 'future-work-item', 
-        'Deeper integration with third-party apps for seamless workflow automation'
+        'Deeper integration with other external apps (calendar, reminders, email, notes) for a seemless user experience.'
       );
       const futureItem2 = createElement('li', 'future-work-item',
-        'Advanced contextual awareness through sensor data and location-based insights'
+        'Improving Vector DB retrieval to provide more relevant context faster.'
       );
       const futureItem3 = createElement('li', 'future-work-item',
-        'Improved personalization algorithms to better predict user needs and preferences'
+        'Wider variety of runtime widget cards that can be tailored to unique user needs.'
       );
       
       appendChildren(futureWorkList, futureItem1, futureItem2, futureItem3);
@@ -279,6 +283,7 @@ export function createProjectsPage(): HTMLElement {
         annotationBlock2,
         annotationSubtitle2,
         futureWorkTitle,
+        futureWorkIntro,
         futureWorkList
       );
       projectCard.appendChild(annotationBlock2);
@@ -372,20 +377,24 @@ export function createProjectsPage(): HTMLElement {
         'Future Work'
       );
       
+      const futureWorkIntro = createElement('p', 'future-work-intro',
+        'Future improvements that can make this project better:'
+      );
+      
       const futureWorkList = createElement('ol', 'future-work-list');
       
       const futureItem1 = createElement('li', 'future-work-item', 
-        'Multi-user real-time collaboration with live cursors and presence indicators'
+        'Autonomy to switch between using different diffusion models for varied artistic styles or even use custom models by uploading safetensors or huggingface links.'
       );
       const futureItem2 = createElement('li', 'future-work-item',
-        'Advanced AI style transfer and design system recommendations'
+        'Ability to generate and edit numerous poster designs and styles together in one canvas session'
       );
       const futureItem3 = createElement('li', 'future-work-item',
-        'Export capabilities for various formats and integration with design tools'
+        'Multi-user collaboration where multiple users can work on the same canvas in real-time'
       );
       
       appendChildren(futureWorkList, futureItem1, futureItem2, futureItem3);
-      appendChildren(annotationBlock2, futureWorkTitle, futureWorkList);
+      appendChildren(annotationBlock2, futureWorkTitle, futureWorkIntro, futureWorkList);
       projectCard.appendChild(annotationBlock2);
     }
 
