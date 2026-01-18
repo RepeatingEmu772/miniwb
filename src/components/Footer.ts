@@ -21,7 +21,7 @@ export function createFooter(): HTMLElement {
   linkedinLink.setAttribute('aria-label', 'LinkedIn');
   
   const emailLink = createElement('a', 'social-icon') as HTMLAnchorElement;
-  emailLink.href = 'mailto:mmrig4@gmail.edu';
+  emailLink.href = 'mailto:mmrig4@gmail.com';
   emailLink.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`;
   emailLink.setAttribute('aria-label', 'Email');
   
