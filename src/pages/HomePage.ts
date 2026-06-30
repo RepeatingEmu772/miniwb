@@ -12,10 +12,35 @@ export function createHomePage(): HTMLElement {
   const title = createElement('h1', 'hero-title', 'Manan Mrig');
   const subtitle = createElement('p', 'hero-subtitle', 'Student and Software Engineer');
   const bio = createElement('p', 'hero-bio', 
-    'I create meaningful digital experiences through thoughtful design and clean code. Currently focused on learning how humans interact with intelligent systems and creating spaces for Human-AI co-creation. '
+    'I create meaningful digital experiences through thoughtful design and clean code. Currently focused on learning how to make systems smarter. '
   );
+
+  const updatesSection = createElement('div', 'hero-updates');
+  const updatesTitle = createElement('p', 'hero-updates-title', 'Recent Updates');
+  const updatesList = createElement('div', 'hero-updates-list');
+
+  const updates = [
+    { text: 'Just Accepted an offer from the University of Waterloo!! See yall in Toronto', date: 'May 2026' },
+    { text: 'Recieved Addmission offers from 8 out 9 grad schools I applied to ', date: 'May 2026' },
+    { text: 'Visiting Goa with da homies from MPLS', date: 'Apr 2026' },
+    { text: 'Visiting Vietnam for the first time.', date: 'Mar 2026' },
+    { text: 'Recieved my first Graduate School offer :)', date: 'Feb 2026' },
+    { text: 'Visiting Thailand to celebrate New Years.', date: 'Dec 2025' },
+    { text: 'Stepping away from Target to go home and apply from graduate school and travel!!', date: 'Jul 2025' }
+  ];
+
+  updates.forEach((update) => {
+    const updateItem = createElement('div', 'hero-update-item');
+    const updateText = createElement('p', 'hero-update-text', update.text);
+    const updateDate = createElement('span', 'hero-update-date', update.date);
+
+    appendChildren(updateItem, updateDate, updateText);
+    updatesList.appendChild(updateItem);
+  });
+
+  appendChildren(updatesSection, updatesTitle, updatesList);
   
-  appendChildren(heroContent, prefix, title, subtitle, bio);
+  appendChildren(heroContent, prefix, title, subtitle, bio, updatesSection);
   
   // Hero image
   const imageWrapper = createElement('div', 'hero-image-wrapper');
@@ -112,6 +137,15 @@ export function createHomePage(): HTMLElement {
   const educationTitle = createElement('h2', 'section-title', 'Education & Continuous Learning');
   const educationContent = createElement('div', 'section-content');
   
+  const gradeducation = createElement('div', 'education-item');
+  const gradschoolName = createElement('h3', 'item-title', 'University of Waterloo');
+  const graddegree = createElement('p', 'item-subtitle', 'Masters in Data Science');
+  const gradeduYear = createElement('span', 'item-year', 'September 2026 - Present');
+  const gradeduDesc = createElement('p', 'item-description', 
+    'Focused the mathematical foundations of higher level machine learning models.'
+  );
+  appendChildren(gradeducation, gradschoolName, graddegree, gradeduYear, gradeduDesc);
+
   const education = createElement('div', 'education-item');
   const schoolName = createElement('h3', 'item-title', 'University of Minnesota, Twin Cities');
   const degree = createElement('p', 'item-subtitle', 'B.S. in Computer Science');
@@ -130,16 +164,8 @@ export function createHomePage(): HTMLElement {
   );
   appendChildren(learn1, course1, platform1, learnYear1, learnDesc1);
   
-  const learn2 = createElement('div', 'learning-item');
-  const course2 = createElement('h3', 'item-title', 'Human-Centered AI');
-  const platform2 = createElement('p', 'item-subtitle', 'Coursera - Clemson University');
-  const learnYear2 = createElement('span', 'item-year', '2025');
-  const learnDesc2 = createElement('p', 'item-description', 
-    ' Explored principles of Human-Centered AI, focusing on creating AI systems aligned with human values, behavior, and responsible design.'
-  );
-  appendChildren(learn2, course2, platform2, learnYear2, learnDesc2);
   
-  appendChildren(educationContent, education, learn1, learn2);
+  appendChildren(educationContent, gradeducation, education, learn1);
   appendChildren(educationSection, educationTitle, educationContent);
   
   appendChildren(page, hero, featuredSection, educationSection, experienceSection, resumeLink);
