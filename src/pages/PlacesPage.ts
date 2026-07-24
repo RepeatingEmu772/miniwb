@@ -72,6 +72,8 @@ const placeToCountryMap: Record<string, string | null> = {
   'Ferrari World': 'United Arab Emirates',
   'St. Paul': 'United States of America',
   'Wisconsin': 'United States of America',
+  'Vietnam': 'Vietnam',
+  'Thailand': 'Thailand',
 };
 
 export function createPlacesPage(): HTMLElement {
@@ -125,7 +127,7 @@ export function createPlacesPage(): HTMLElement {
 
   const content = createElement('section', 'page-content');
 
-  // Places data - 31 locations with their years
+  // Places data - 57 locations with their years (31 original + 14 Vietnam + 12 Thailand)
   const places = [
     { location: 'Minneapolis', year: '2021' },
     { location: 'Chicago', year: '2022' },
@@ -158,6 +160,32 @@ export function createPlacesPage(): HTMLElement {
     { location: 'Minneapolis', year: '2023' },
     { location: 'Dubai', year: '2025' },
     { location: 'Minneapolis', year: '2021' },
+    { location: 'Vietnam', year: '2025' },
+    { location: 'Vietnam', year: '2025' },
+    { location: 'Vietnam', year: '2025' },
+    { location: 'Vietnam', year: '2025' },
+    { location: 'Vietnam', year: '2025' },
+    { location: 'Vietnam', year: '2025' },
+    { location: 'Vietnam', year: '2025' },
+    { location: 'Vietnam', year: '2025' },
+    { location: 'Vietnam', year: '2025' },
+    { location: 'Vietnam', year: '2025' },
+    { location: 'Vietnam', year: '2025' },
+    { location: 'Vietnam', year: '2025' },
+    { location: 'Vietnam', year: '2025' },
+    { location: 'Vietnam', year: '2025' },
+    { location: 'Thailand', year: '2025' },
+    { location: 'Thailand', year: '2025' },
+    { location: 'Thailand', year: '2025' },
+    { location: 'Thailand', year: '2025' },
+    { location: 'Thailand', year: '2025' },
+    { location: 'Thailand', year: '2025' },
+    { location: 'Thailand', year: '2025' },
+    { location: 'Thailand', year: '2025' },
+    { location: 'Thailand', year: '2025' },
+    { location: 'Thailand', year: '2025' },
+    { location: 'Thailand', year: '2025' },
+    { location: 'Thailand', year: '2025' },
   ];
 
   // Create place cards with images
@@ -171,7 +199,18 @@ export function createPlacesPage(): HTMLElement {
     const rightZone = createElement('div', 'image-nav-zone right-zone');
 
     const image = createElement('img', 'place-image') as HTMLImageElement;
-    image.src = `/image/scenes/${idx + 1}.jpeg`;
+    // Vietnam photos (indices 32-45) load from viet folder, Thailand photos (indices 46-57) load from thai folder
+    const thaiPhotoIndices = [1, 11, 14, 18, 2, 20, 21, 23, 24, 25, 6, 7]; // Actual file indices
+    if (idx >= 45) {
+      const thaiPosition = idx - 45; // 0-11 for the 12 Thai photos
+      const thaiFileIndex = thaiPhotoIndices[thaiPosition];
+      image.src = `/image/scenes/thai/thailand - ${thaiFileIndex}.jpeg`;
+    } else if (idx >= 31) {
+      const vietIndex = idx - 30; // Convert to 1-indexed for viet folder
+      image.src = `/image/scenes/viet/vietnam - ${vietIndex}.jpeg`;
+    } else {
+      image.src = `/image/scenes/${idx + 1}.jpeg`;
+    }
     image.alt = place.location;
     image.loading = 'lazy';
 
@@ -214,7 +253,7 @@ export function createPlacesPage(): HTMLElement {
   const countryPaths = new Map<string, SVGPathElement>();
   let selectedCountryName = visitedCountries[0].name;
   let selectedCountryForFilter: string | null = null;
-  let filteredIndices: number[] = Array.from({ length: 31 }, (_, i) => i + 1); // All indices initially
+  let filteredIndices: number[] = Array.from({ length: 57 }, (_, i) => i + 1); // All indices initially
   let currentFilteredPosition: number = 0; // 0-based position in filtered list
 
   // Helper: count photos for a country
@@ -241,7 +280,7 @@ export function createPlacesPage(): HTMLElement {
   // Helper: get all indices matching a country
   const getFilteredIndices = (countryFilter: string | null): number[] => {
     if (countryFilter === null) {
-      return Array.from({ length: 31 }, (_, i) => i + 1); // All indices
+      return Array.from({ length: 57 }, (_, i) => i + 1); // All indices
     }
 
     const matching: number[] = [];
@@ -380,6 +419,23 @@ export function createPlacesPage(): HTMLElement {
       applyFilter(position);
     });
 
+    // Add click listeners to place cards
+    cards.forEach((card) => {
+      card.addEventListener('click', (e) => {
+        // Don't trigger if clicking on nav zones (those have their own handlers)
+        const target = e.target as HTMLElement;
+        if (target.classList.contains('image-nav-zone')) return;
+
+        const cardIdx = parseInt(card.getAttribute('data-index') || '0', 10);
+        const positionInFiltered = filteredIndices.indexOf(cardIdx);
+        
+        if (positionInFiltered >= 0) {
+          currentFilteredPosition = positionInFiltered + 1; // Convert to 1-indexed position
+          applyFilter(currentFilteredPosition);
+        }
+      });
+    });
+
     // Show first photo initially
     applyFilter(1);
     currentFilteredPosition = 1;
@@ -422,7 +478,7 @@ export function createPlacesPage(): HTMLElement {
         if (countryName === 'all') {
           // Show all photos
           selectedCountryForFilter = null;
-          filteredIndices = Array.from({ length: 31 }, (_, i) => i + 1);
+          filteredIndices = Array.from({ length: 57 }, (_, i) => i + 1);
           updateNumberList();
           currentFilteredPosition = 1;
           applyFilter(1);

@@ -9,6 +9,7 @@ html {
   background-size: 400% 400%;
   animation: gradientShift 12s ease infinite;
   min-height: 100%;
+  scrollbar-gutter: stable;
 }
 
 html.theme-light {
@@ -95,6 +96,7 @@ font-family: var(--font-family);
   background-size: 400% 400%;
   animation: gradientShift 12s ease infinite;
   font-weight: 300;
+  scrollbar-gutter: stable;
 }
 
 /* Theme variations */
@@ -688,7 +690,7 @@ body.theme-gradient {
 .number-list {
   display: flex;
   gap: var(--spacing-xs);
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   margin-top: var(--spacing-sm);
   justify-content: center;
   width: auto;
@@ -745,7 +747,7 @@ body.theme-gradient {
 }
 
 .number-item.active {
-  color: var(--color-accent);
+  color: #ffffff;
   font-weight: 600;
 }
 
@@ -986,6 +988,9 @@ body.theme-gradient {
   flex-direction: column;
   gap: var(--spacing-lg);
   min-height: 80vh;
+  width: 100%;
+  flex: 1;
+  min-width: 0;
 }
 
 .page-header {
