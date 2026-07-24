@@ -20,12 +20,6 @@ const visitedCountries: VisitedCountry[] = [
     note: 'Most of the scenes on this page are from across the US.',
   },
   {
-    name: 'Canada',
-    label: 'Canada',
-    year: '2026',
-    note: 'Graduate school home base and the newest stop on the map.',
-  },
-  {
     name: 'United Arab Emirates',
     label: 'United Arab Emirates',
     year: '2025',
@@ -40,18 +34,28 @@ const visitedCountries: VisitedCountry[] = [
   {
     name: 'Thailand',
     label: 'Thailand',
-    year: '2025',
+    year: '2026',
     note: 'A recent travel stop.',
   },
   {
     name: 'Vietnam',
     label: 'Vietnam',
-    year: '2025',
+    year: '2026',
     note: 'First-time visit highlighted on the map.',
   },
 ];
 
-const visitedCountryLookup = new Map(visitedCountries.map((country) => [country.name, country]));
+// Countries to highlight on map only (no filter buttons)
+const mapOnlyCountries: VisitedCountry[] = [
+  {
+    name: 'Ukraine',
+    label: 'Ukraine',
+    year: '2025',
+    note: 'A notable destination on the map.',
+  },
+];
+
+const visitedCountryLookup = new Map([...visitedCountries, ...mapOnlyCountries].map((country) => [country.name, country]));
 
 // Map each place location to its country (null if unmapped/event-based)
 const placeToCountryMap: Record<string, string | null> = {
@@ -160,32 +164,32 @@ export function createPlacesPage(): HTMLElement {
     { location: 'Minneapolis', year: '2023' },
     { location: 'Dubai', year: '2025' },
     { location: 'Minneapolis', year: '2021' },
-    { location: 'Vietnam', year: '2025' },
-    { location: 'Vietnam', year: '2025' },
-    { location: 'Vietnam', year: '2025' },
-    { location: 'Vietnam', year: '2025' },
-    { location: 'Vietnam', year: '2025' },
-    { location: 'Vietnam', year: '2025' },
-    { location: 'Vietnam', year: '2025' },
-    { location: 'Vietnam', year: '2025' },
-    { location: 'Vietnam', year: '2025' },
-    { location: 'Vietnam', year: '2025' },
-    { location: 'Vietnam', year: '2025' },
-    { location: 'Vietnam', year: '2025' },
-    { location: 'Vietnam', year: '2025' },
-    { location: 'Vietnam', year: '2025' },
-    { location: 'Thailand', year: '2025' },
-    { location: 'Thailand', year: '2025' },
-    { location: 'Thailand', year: '2025' },
-    { location: 'Thailand', year: '2025' },
-    { location: 'Thailand', year: '2025' },
-    { location: 'Thailand', year: '2025' },
-    { location: 'Thailand', year: '2025' },
-    { location: 'Thailand', year: '2025' },
-    { location: 'Thailand', year: '2025' },
-    { location: 'Thailand', year: '2025' },
-    { location: 'Thailand', year: '2025' },
-    { location: 'Thailand', year: '2025' },
+    { location: 'Vietnam', year: '2026' },
+    { location: 'Vietnam', year: '2026' },
+    { location: 'Vietnam', year: '2026' },
+    { location: 'Vietnam', year: '2026' },
+    { location: 'Vietnam', year: '2026' },
+    { location: 'Vietnam', year: '2026' },
+    { location: 'Vietnam', year: '2026' },
+    { location: 'Vietnam', year: '2026' },
+    { location: 'Vietnam', year: '2026' },
+    { location: 'Vietnam', year: '2026' },
+    { location: 'Vietnam', year: '2026' },
+    { location: 'Vietnam', year: '2026' },
+    { location: 'Vietnam', year: '2026' },
+    { location: 'Vietnam', year: '2026' },
+    { location: 'Thailand', year: '2026' },
+    { location: 'Thailand', year: '2026' },
+    { location: 'Thailand', year: '2026' },
+    { location: 'Thailand', year: '2026' },
+    { location: 'Thailand', year: '2026' },
+    { location: 'Thailand', year: '2026' },
+    { location: 'Thailand', year: '2026' },
+    { location: 'Thailand', year: '2026' },
+    { location: 'Thailand', year: '2026' },
+    { location: 'Thailand', year: '2026' },
+    { location: 'Thailand', year: '2026' },
+    { location: 'Thailand', year: '2026' },
   ];
 
   // Create place cards with images
@@ -385,7 +389,7 @@ export function createPlacesPage(): HTMLElement {
     if (visitedCountryLookup.has(countryName)) {
       const photoCount = getPhotoCountForCountry(countryName);
       path.addEventListener('mouseover', () => {
-        tooltip.textContent = `View all ${photoCount} photo${photoCount !== 1 ? 's' : ''}`;
+        tooltip.textContent = `View ${photoCount} photo${photoCount !== 1 ? 's' : ''}`;
         tooltip.style.display = 'block';
         
         const rect = path.getBoundingClientRect();
