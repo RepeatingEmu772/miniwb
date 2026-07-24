@@ -1497,6 +1497,159 @@ body.theme-dark .progress-bar {
   display: inline-block;
 }
 
+/* Country Filters */
+.country-filters-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  width: 100%;
+  padding: var(--spacing-md) 0;
+}
+
+.country-filters-list {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.country-filter-item {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--color-text-light);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: 0.85rem;
+  font-weight: 400;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.country-filter-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--color-text);
+}
+
+.country-filter-item.active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.country-filter-item.show-all {
+  margin-right: 0.5rem;
+}
+
+/* Light theme adjustments */
+body.theme-light .country-filters-section {
+}
+
+body.theme-light .country-filter-item {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #666666;
+}
+
+body.theme-light .country-filter-item:hover {
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.25);
+  color: #2c2c2c;
+}
+
+body.theme-light .country-filter-item.active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #000;
+}
+
+/* World map */
+.world-map-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  width: 100%;
+}
+
+.world-map-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.world-map-subtitle {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+  max-width: 760px;
+}
+
+.world-map-card {
+  position: relative;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.world-map-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.world-country {
+  fill: rgba(255, 255, 255, 0.04);
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 0.8;
+  transition: fill 0.18s ease, opacity 0.18s ease, stroke 0.18s ease;
+  cursor: pointer;
+}
+
+.world-country:hover {
+  opacity: 1;
+}
+
+.world-country[data-visited='true'] {
+  fill: var(--color-accent);
+  opacity: 0.85;
+}
+
+.world-country.selected {
+  fill: #ffffff;
+  opacity: 0.95;
+  stroke: var(--color-accent);
+  stroke-width: 1.4;
+}
+
+body.theme-light .world-map-card {
+  background: transparent;
+}
+
+body.theme-light .world-country {
+  fill: rgba(0, 0, 0, 0.04);
+  stroke: rgba(0, 0, 0, 0.1);
+}
+
+.world-map-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-light);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
 /* Theme Switcher */
 .theme-switcher {
   position: fixed;
@@ -1509,6 +1662,9 @@ body.theme-dark .progress-bar {
   padding: 8px;
   border-radius: 24px;
   z-index: 1000;
+  .world-map-card {
+    padding: 0;
+  }
 }
 
 .theme-label {
@@ -1577,4 +1733,33 @@ body.theme-dark .theme-switcher {
     padding: 6px 12px;
     font-size: 12px;
   }
+}
+
+/* Country hover tooltip */
+.country-hover-tooltip {
+  background: rgba(0, 0, 0, 0.9);
+  color: #ffffff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  animation: tooltipFadeIn 0.2s ease;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-100%) translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-100%);
+  }
+}
+
+body.theme-light .country-hover-tooltip {
+  background: rgba(0, 0, 0, 0.85);
+  color: #ffffff;
 }
