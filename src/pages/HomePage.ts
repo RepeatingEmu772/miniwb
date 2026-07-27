@@ -21,12 +21,12 @@ export function createHomePage(): HTMLElement {
 
   const updates = [
     { text: 'Just Accepted an offer from the University of Waterloo!! See yall in Toronto.', date: 'May 2026' },
-    { text: 'Recieved Admission offers from 8 out 9 grad schools I applied to.', date: 'May 2026' },
-    { text: 'Visiting Goa with da homies from MPLS.', date: 'Apr 2026' },
+    { text: 'Recieved Admission offers from 8 out of 9 grad schools I applied to.', date: 'May 2026' },
+    { text: 'Visiting Goa with da homies.', date: 'Apr 2026' },
     { text: 'Visiting Vietnam for the first time.', date: 'Mar 2026' },
     { text: 'Recieved my first Graduate School offer :)', date: 'Feb 2026' },
     { text: 'Visiting Thailand to celebrate New Years.', date: 'Dec 2025' },
-    { text: 'Stepping away from Target to go home and apply from graduate school and travel!!', date: 'Jul 2025' }
+    { text: 'Stepping away from Target to go home and apply for graduate school and travel!!', date: 'Jul 2025' }
   ];
 
   updates.forEach((update) => {
