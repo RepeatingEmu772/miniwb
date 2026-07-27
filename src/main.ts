@@ -1,4 +1,5 @@
 import './style.css';
+import { inject } from '@vercel/analytics';
 import { createNavigation } from './components/Navigation';
 import { createFooter } from './components/Footer';
 import { createThemeSwitcher } from './components/ThemeSwitcher';
@@ -12,6 +13,8 @@ import {
   createYoutubePage, 
   createPlacesPage
 } from './pages';
+
+inject();
 
 console.log('DOM loaded, starting app...');
 
