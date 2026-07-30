@@ -78,6 +78,7 @@ const placeToCountryMap: Record<string, string | null> = {
   'Wisconsin': 'United States of America',
   'Vietnam': 'Vietnam',
   'Thailand': 'Thailand',
+  'Goa': 'India',
 };
 
 export function createPlacesPage(): HTMLElement {
@@ -131,7 +132,7 @@ export function createPlacesPage(): HTMLElement {
 
   const content = createElement('section', 'page-content');
 
-  // Places data - 57 locations with their years (31 original + 14 Vietnam + 12 Thailand)
+  // Places data with the new Goa photos added to the scenes carousel
   const places = [
     { location: 'Minneapolis', year: '2021' },
     { location: 'Chicago', year: '2022' },
@@ -190,6 +191,16 @@ export function createPlacesPage(): HTMLElement {
     { location: 'Thailand', year: '2026' },
     { location: 'Thailand', year: '2026' },
     { location: 'Thailand', year: '2026' },
+    { location: 'Goa', year: '2026' },
+    { location: 'Goa', year: '2026' },
+    { location: 'Goa', year: '2026' },
+    { location: 'Goa', year: '2026' },
+    { location: 'Goa', year: '2026' },
+    { location: 'Goa', year: '2026' },
+    { location: 'Goa', year: '2026' },
+    { location: 'Goa', year: '2026' },
+    { location: 'Goa', year: '2026' },
+    { location: 'Goa', year: '2026' },
   ];
 
   // Create place cards with images
@@ -203,9 +214,15 @@ export function createPlacesPage(): HTMLElement {
     const rightZone = createElement('div', 'image-nav-zone right-zone');
 
     const image = createElement('img', 'place-image') as HTMLImageElement;
-    // Vietnam photos (indices 32-45) load from viet folder, Thailand photos (indices 46-57) load from thai folder
+    // Vietnam photos (indices 32-45) load from viet folder, Thailand photos (indices 46-57) load from thai folder, Goa photos follow after that.
     const thaiPhotoIndices = [1, 11, 14, 18, 2, 20, 21, 23, 24, 25, 6, 7]; // Actual file indices
-    if (idx >= 45) {
+    const goaPhotoIndices = [2, 4, 6, 8, 9, 13, 14, 15, 17, 18]; // Actual file indices
+
+    if (idx >= 57) {
+      const goaPosition = idx - 57; // 0-9 for the 10 Goa photos
+      const goaFileIndex = goaPhotoIndices[goaPosition];
+      image.src = `/image/scenes/goa/goa - ${goaFileIndex}.jpeg`;
+    } else if (idx >= 45) {
       const thaiPosition = idx - 45; // 0-11 for the 12 Thai photos
       const thaiFileIndex = thaiPhotoIndices[thaiPosition];
       image.src = `/image/scenes/thai/thailand - ${thaiFileIndex}.jpeg`;
@@ -257,7 +274,7 @@ export function createPlacesPage(): HTMLElement {
   const countryPaths = new Map<string, SVGPathElement>();
   let selectedCountryName = visitedCountries[0].name;
   let selectedCountryForFilter: string | null = null;
-  let filteredIndices: number[] = Array.from({ length: 57 }, (_, i) => i + 1); // All indices initially
+  let filteredIndices: number[] = Array.from({ length: places.length }, (_, i) => i + 1); // All indices initially
   let currentFilteredPosition: number = 0; // 0-based position in filtered list
 
   // Helper: count photos for a country
@@ -284,7 +301,7 @@ export function createPlacesPage(): HTMLElement {
   // Helper: get all indices matching a country
   const getFilteredIndices = (countryFilter: string | null): number[] => {
     if (countryFilter === null) {
-      return Array.from({ length: 57 }, (_, i) => i + 1); // All indices
+      return Array.from({ length: places.length }, (_, i) => i + 1); // All indices
     }
 
     const matching: number[] = [];
@@ -482,7 +499,7 @@ export function createPlacesPage(): HTMLElement {
         if (countryName === 'all') {
           // Show all photos
           selectedCountryForFilter = null;
-          filteredIndices = Array.from({ length: 57 }, (_, i) => i + 1);
+          filteredIndices = Array.from({ length: places.length }, (_, i) => i + 1);
           updateNumberList();
           currentFilteredPosition = 1;
           applyFilter(1);

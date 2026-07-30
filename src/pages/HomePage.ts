@@ -20,7 +20,7 @@ export function createHomePage(): HTMLElement {
   const updatesList = createElement('div', 'hero-updates-list');
 
   const updates = [
-    { text: 'Just Accepted an offer from the University of Waterloo!! See yall in Toronto.', date: 'May 2026' },
+    { text: 'Just Accepted an offer from the University of Waterloo!', date: 'May 2026' },
     { text: 'Recieved Admission offers from 8 out of 9 grad schools I applied to.', date: 'May 2026' },
     { text: 'Visiting Goa with da homies.', date: 'Apr 2026' },
     { text: 'Visiting Vietnam for the first time.', date: 'Mar 2026' },
