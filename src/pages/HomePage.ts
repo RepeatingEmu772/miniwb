@@ -79,10 +79,6 @@ export function createHomePage(): HTMLElement {
   appendChildren(experienceContent, exp1, exp2);
   appendChildren(experienceSection, experienceTitle, experienceContent);
   
-  // Resume link
-  const resumeLink = createElement('p', 'resume-link');
-  resumeLink.innerHTML = 'view my <a href="/cv.pdf" target="_blank">cv</a> for all experiences and in depth descriptions';
-  
   // Featured Projects section
   const featuredSection = createElement('section', 'home-section');
   const featuredTitle = createElement('h2', 'section-title', 'Projects');
@@ -168,7 +164,7 @@ export function createHomePage(): HTMLElement {
   appendChildren(educationContent, gradeducation, education, learn1);
   appendChildren(educationSection, educationTitle, educationContent);
   
-  appendChildren(page, hero, featuredSection, educationSection, experienceSection, resumeLink);
+  appendChildren(page, hero, featuredSection, educationSection, experienceSection);
   
   return page;
 }

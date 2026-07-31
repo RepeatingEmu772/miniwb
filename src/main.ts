@@ -24,8 +24,7 @@ const navigationItems: NavigationItem[] = [
   { label: 'skills', path: '/skills' },
   { label: 'youtube', path: '/youtube' },
   { label: 'scenes', path: '/places' },
-  { label: 'academic cv', path: '/cv.pdf' },
-  { label: 'professional resume', path: '/resume.pdf' }
+  { label: 'resume', path: '/resume.pdf' }
 ];
 
 function initApp() {
